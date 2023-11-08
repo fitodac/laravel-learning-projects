@@ -9,6 +9,8 @@ use App\Traits\ApiResponse;
 use App\Traits\ApiResponseMessage;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+
 
 
 class AuthController extends Controller
@@ -68,6 +70,26 @@ class AuthController extends Controller
 	{
 		$request->user()->tokens()->delete();
 		return $this->successResponse([], $this->responseMessage('logout'));
+	}
+
+
+	// public function verifyAccount(Request $request, int $id, string $hash)
+	public function verifyAccount(EmailVerificationRequest $request)
+	{
+
+		if( auth()->user()->hasVerifiedEmail() ){
+			return $this->successResponse([], $this->responseMessage('email_already_been_verified'));
+		}
+
+		$request->fulfill();
+		return $this->successResponse([], $this->responseMessage('email_verified'));
+	}
+
+
+	public function resendVerificationEmail(Request $request)
+	{
+		$request->user()->sendEmailVerificationNotification();
+		return $this->successResponse([], $this->responseMessage('email_verification_sent'));
 	}
 
 }

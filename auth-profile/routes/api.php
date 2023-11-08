@@ -29,9 +29,17 @@ Route::get('/login', [ErrorController::class, 'index'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function(){
-	Route::post('/logout', [AuthController::class, 'logout']);
 	Route::resource('/profile', ProfileController::class)
 	->only(['index', 'update']);
 });
+
+Route::group(['middleware' => ['auth:sanctum']], function(){
+	Route::post('/logout', [AuthController::class, 'logout']);
+
+	Route::post('/email/verify/{id}/{hash}', [AuthController::class, 'verifyAccount']);
+	Route::post('/email/verification-notification', [AuthController::class, 'resendVerificationEmail'])->name('verification.send');
+});
+
+
 
 Route::fallback([ErrorController::class, 'error404'])->name('error');

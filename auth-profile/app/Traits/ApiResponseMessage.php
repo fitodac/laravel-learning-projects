@@ -18,6 +18,11 @@ trait ApiResponseMessage
 		// Profile
 		'profile_updated' => "Hemos actualizado tu perfil",
 
+		// Verificación de email
+		'email_verified' => "Tu email ha sido verificado correctamente",
+		'email_already_been_verified' => "Tu email ya ha sido verificado antes",
+		'email_verification_sent' => "Te hemos enviado un email de verificación",
+
 		// Errores de usuario
 		'wrong_user_id' => "El ID es incorrecto",
 		'wrong_email' => "Este email no existe en nuestra base de datos",

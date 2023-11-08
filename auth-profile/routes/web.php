@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +14,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+	return view('welcome');
 });
+
+
+Route::get('/email/verify/{id}/{hash}', function (Request $request, int $id, string $hash){
+	return "$id/$hash/?expires=$request->expires&signature=$request->signature";
+})
+	// ->middleware(['auth', 'signed'])
+	->name('verification.verify');
