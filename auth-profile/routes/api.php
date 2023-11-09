@@ -39,7 +39,6 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function(){
 });
 
 
-
 Route::group(['middleware' => ['auth:sanctum']], function(){
 	Route::post('/logout', [AuthController::class, 'logout']);
 
