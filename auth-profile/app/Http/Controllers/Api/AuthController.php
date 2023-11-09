@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
 use App\Models\User;
+
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Traits\ApiResponse;
 use App\Traits\ApiResponseMessage;
@@ -73,7 +74,9 @@ class AuthController extends Controller
 	}
 
 
-	// public function verifyAccount(Request $request, int $id, string $hash)
+	/**
+	 * Verificación de email
+	 */
 	public function verifyAccount(EmailVerificationRequest $request)
 	{
 

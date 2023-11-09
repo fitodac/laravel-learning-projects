@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\Api\AuthController;
-use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\Api\RegisterController;
+use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\ResetPasswordController;
+use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\Api\ErrorController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,6 +28,9 @@ Route::post('/register', [RegisterController::class, 'store']);
  */
 Route::get('/login', [ErrorController::class, 'index'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
+
+Route::post('/forgot-password', [ResetPasswordController::class, 'sendResetPasswordEmail'])->name('password.reset.email');
+Route::post('/reset-password', [ResetPasswordController::class, 'resetPassword'])->name('password.reset');
 
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function(){
 	Route::resource('/profile', ProfileController::class)

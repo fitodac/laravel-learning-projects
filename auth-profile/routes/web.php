@@ -23,3 +23,9 @@ Route::get('/email/verify/{id}/{hash}', function (Request $request, int $id, str
 })
 	// ->middleware(['auth', 'signed'])
 	->name('verification.verify');
+
+
+Route::get('/reset-password', function (Request $request){
+	return "/reset-password/?email=$request->email&token=$request->token";
+})
+->name('password.reset.link');
