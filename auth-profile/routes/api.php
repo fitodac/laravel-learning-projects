@@ -45,5 +45,4 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
 	Route::post('/email/verification-notification', [VerifyAccountController::class, 'resendVerificationEmail'])->name('verification.send');
 });
 
-
 Route::fallback([ErrorController::class, 'error404'])->name('error');

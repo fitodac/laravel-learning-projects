@@ -11,48 +11,33 @@ Se pretende que la aplicación haga lo siguiente:
 <br>
 
 ## Register
+1. Se crea una cuenta.
+2. El sistema envía un email de verificación.
+3. El usuario ha de verificar su dirección de email.
 
-#### Backend
-1. El usuario ha de poder registrarse en la aplicación. ✅
-2. Al registrarse se devolverá el usuario [201]. ✅
-// 3. Si el username o email ya existen devolverá una notificación de error.
-
-#### Email confirmation
-1. Al registrarse, el usuario recibe un correo para confirmar us dirección de email
-2. El usuario deberá tener su correo verificado para acceder a la aplicación.
-En caso de que quiera logearse sin haber cobnfirmado su correo, se le mostrará un 
-mensaje con un link a una página de verificación en la que deberá ingresar su 
-dirección de email para que Laraver vuelva a enviarle un email de verificación.
-
-
-#### Frontend
-1. El usuario es devuelto en la respuesta y se ha de almacenar en un storage persistente en el navegador.
-2. En el front, ha de existir un storage que sirva para manejar la información del usuario. <br>
-Nunca se han de consumir los datos directamente de localStorage.
 <br>
-<br>
-
-
 
 ## Login
+1. El usuario accede con su email y password.
+2. Si la dirección de email no ha sido verificada no podrá acceder y
+deberá solicitar un nuevo link de verificación.
 
-#### Backend
-1. El usuario accede con su email y password. ✅
-2. En el inicio de sesión se debe enviar un valor para "device_name". ✅
-3. Si el email o password son incorrectos devuelve error.
+### Recuperar contraseña
+El usuario podrá recuperar contraseña con su email.
 
-#### Frontend
 <br>
-
+<br>
 
 ## Profile
-Para acceder a la ruta `/profile` siempre se deberá enviar el `Bearer token`.
+1. Al usuario accede a una vista de perfil en donde podrá 
+ver y editar sus datos.
 
-#### Backend
-1. Se obtienen los datos de usuario en la ruta `/profile`. ✅
-2. Se actualizan los datos en `/profile/{id}`.
-3. Si el ID del URL es diferente al ID del usuario devuelve error. ✅
-4. El usuario puede subir una foto de perfil.
 
-#### Frontend
 <br>
+<br>
+
+## Test
+Se implementa una test suite para la aplicación.
+
+## Postman collection
+Se implementa una colección en Postman.

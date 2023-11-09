@@ -35,7 +35,7 @@ class AuthServiceProvider extends ServiceProvider
 
 				return (new MailMessage)
 					->subject('Acción requerida: verifica tu email')
-					->greeting("Hola $user->firstname")
+					->greeting("Saludos terricola!")
 					->lines([
 						'Para terminar de configurar tu cuenta, necesitamos que verifiques tu dirección de email.',
 						'Haz click en el botón abajo y muéstranos que no eres un robot...'
