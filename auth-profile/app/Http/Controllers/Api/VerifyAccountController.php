@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Traits\ApiResponse;
 use App\Traits\ApiResponseMessage;
-use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 
 class VerifyAccountController extends Controller
@@ -15,14 +14,27 @@ class VerifyAccountController extends Controller
 	use ApiResponse, ApiResponseMessage;
 
 
-	public function verifyAccount(EmailVerificationRequest $request)
+	// public function verifyAccount(EmailVerificationRequest $request)
+	public function verifyAccount(Request $request, int $id, string $hash)
 	{
 
-		if( auth()->user()->hasVerifiedEmail() ){
+		$user = auth()->user();
+
+		if( 
+			!hash_equals(sha1($user->getEmailForVerification()), (string) $hash) 
+			or !hash_equals( (string) $user->id, (string) $id )
+		){
+			return $this->errorResponse([], $this->responseMessage('unauthorized'), 403);
+		}
+
+
+		if( $user->hasVerifiedEmail() ){
 			return $this->successResponse([], $this->responseMessage('email_already_been_verified'));
 		}
 
-		$request->fulfill();
+		$user->markEmailAsVerified();
+		$user->tokens()->delete();
+
 		return $this->successResponse([], $this->responseMessage('email_verified'));
 	}
 

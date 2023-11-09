@@ -40,17 +40,25 @@ class ProfileController extends Controller
 	 */
 	public function update(Request $request, int $id)
 	{
+		if( 'PATCH' !== $request->method() ){
+			return $this->errorResponse([], $this->responseMessage('405'), 405);
+		}
+
 		$user = auth()->user();
 
 		if( $id !== $user->id ){
 			return $this->errorResponse([], $this->responseMessage('wrong_user_id'));
 		}
 
+		if( empty($request->all()) ){
+			return $this->successResponse($user, $this->responseMessage('profile_nothing_has_changed'), 400);
+		}
+
 		$validate = Validator::make($request->all(), [
 			'name' => 'unique:users,name,'.$id.'max:30',
 			'firstname' => 'min:3|max:30',
 			'lastname' => 'min:3|max:30',
-			'email' => 'unique:users,email'.$id.'|email|max:60',
+			'email' => 'unique:users,email,'.$id.'|email|max:60',
 			'password' => 'confirmed|min:6'
 		]);
 

@@ -16,6 +16,7 @@ trait ApiResponseMessage
 		'logout' => "Has terminado tu sesión con éxito",
 
 		// Profile
+		'profile_nothing_has_changed' => "No se han realizado cambios en tu perfil",
 		'profile_updated' => "Hemos actualizado tu perfil",
 
 		// Verificación de email
@@ -32,6 +33,7 @@ trait ApiResponseMessage
 		// Errores de servidor
 		'route_method_not_allowed' => "El método que estás intentando usar no está permitido para esta ruta",
 		'unauthorized' => "No estás autorizado para realizar esta acción",
+		'405' => "Método no está permitido",
 		'404' => "La ruta que estás buscando no existe o ha sido cambiada"
 	];
 

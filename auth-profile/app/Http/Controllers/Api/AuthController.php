@@ -10,6 +10,7 @@ use App\Traits\ApiResponse;
 use App\Traits\ApiResponseMessage;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 
 class AuthController extends Controller
@@ -32,21 +33,13 @@ class AuthController extends Controller
 		}
 
 		$email = $request->input('email');
-		$password = $request->input('password');
+		$remember_token = $request->input('remember') ? Str::random(10) : null;
 		$device_name = $request->input('device_name', 'webToken');
 
 		$user = User::where('email', $email)->first();
 
 		if( $validate->fails() ){
 			return $this->errorResponse($validate->errors(), 'Error', 422);
-		}
-
-		if( !$user ){
-			return $this->errorResponse([], $this->responseMessage('wrong_email'), 401);
-		}
-
-		if( !Hash::check($password, $user->password) ){
-			return $this->errorResponse([], $this->responseMessage('wrong_password'), 401);
 		}
 
 		if( !auth()->attempt($request->only('email', 'password'), $request->remember) ){
@@ -58,11 +51,15 @@ class AuthController extends Controller
 		}
 		
 		$user = auth()->user();
+		$user->remember_token = $remember_token;
+		$user->save();
+
 		$token = $user->createToken($device_name)->plainTextToken;
 
 		return $this->successResponse([
 			'token' => $token,
 			'token_type' => 'Bearer',
+			'remember_token' => $remember_token,
 			'user' => $user
 		]);
 

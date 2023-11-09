@@ -42,12 +42,15 @@ class RegisterController extends Controller
 			'firstname' => 'required|min:3|max:30',
 			'lastname' => 'required|min:3|max:30',
 			'email' => 'required|unique:users|email|max:60',
-			'password' => 'required|confirmed|min:6'
+			'password' => 'required|confirmed|min:6',
+			'device_name' => 'sometimes|required'
 		]);
 
 		if( $validate->fails() ){
 			return $this->errorResponse($validate->errors(), 'Error', 422);
 		}
+
+		$device_name = $request->input('device_name', 'webToken');
 
 		if( $request->name ){
 			$request->request->add(['name' => Str::slug($request->name)]);
@@ -61,10 +64,15 @@ class RegisterController extends Controller
 			'password' => Hash::make($request->password)
 		]);
 
+		$token = $user->createToken($device_name)->plainTextToken;
+
 		event(new Registered($user));
 
-		return $this->successResponse(
-			$user, 
+		return $this->successResponse([
+			'token' => $token,
+			'token_type' => 'Bearer',
+			'user' => $user
+		], 
 			$this->responseMessage('register_success'),
 			201
 		);

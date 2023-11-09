@@ -38,10 +38,12 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function(){
 	->only(['index', 'update']);
 });
 
+
+
 Route::group(['middleware' => ['auth:sanctum']], function(){
 	Route::post('/logout', [AuthController::class, 'logout']);
 
-	Route::post('/email/verify/{id}/{hash}', [VerifyAccountController::class, 'verifyAccount']);
+	Route::post('/email/verify/{id}/{hash}', [VerifyAccountController::class, 'verifyAccount'])->name('verification.verify');
 	Route::post('/email/verification-notification', [VerifyAccountController::class, 'resendVerificationEmail'])->name('verification.send');
 });
 
