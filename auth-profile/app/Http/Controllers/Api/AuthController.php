@@ -10,8 +10,6 @@ use App\Traits\ApiResponse;
 use App\Traits\ApiResponseMessage;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Foundation\Auth\EmailVerificationRequest;
-
 
 
 class AuthController extends Controller
@@ -54,6 +52,10 @@ class AuthController extends Controller
 		if( !auth()->attempt($request->only('email', 'password'), $request->remember) ){
 			return $this->errorResponse([], $this->responseMessage('login_error'), 401);
 		}
+
+		if( !$user->email_verified_at ){
+			return $this->errorResponse([], $this->responseMessage('user_email_not_verified'), 401);
+		}
 		
 		$user = auth()->user();
 		$token = $user->createToken($device_name)->plainTextToken;
@@ -67,32 +69,11 @@ class AuthController extends Controller
 	}
 
 
+
 	public function logout(Request $request)
 	{
 		$request->user()->tokens()->delete();
 		return $this->successResponse([], $this->responseMessage('logout'));
-	}
-
-
-	/**
-	 * Verificación de email
-	 */
-	public function verifyAccount(EmailVerificationRequest $request)
-	{
-
-		if( auth()->user()->hasVerifiedEmail() ){
-			return $this->successResponse([], $this->responseMessage('email_already_been_verified'));
-		}
-
-		$request->fulfill();
-		return $this->successResponse([], $this->responseMessage('email_verified'));
-	}
-
-
-	public function resendVerificationEmail(Request $request)
-	{
-		$request->user()->sendEmailVerificationNotification();
-		return $this->successResponse([], $this->responseMessage('email_verification_sent'));
 	}
 
 }

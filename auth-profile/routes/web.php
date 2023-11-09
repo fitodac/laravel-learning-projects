@@ -18,14 +18,16 @@ Route::get('/', function () {
 });
 
 
+Route::get('/email/verify', function(){
+	return 'verification.notice';
+})->middleware('auth')->name('verification.notice');
+
+
 Route::get('/email/verify/{id}/{hash}', function (Request $request, int $id, string $hash){
 	return "$id/$hash/?expires=$request->expires&signature=$request->signature";
-})
-	// ->middleware(['auth', 'signed'])
-	->name('verification.verify');
+})->name('verification.verify');
 
 
 Route::get('/reset-password', function (Request $request){
 	return "/reset-password/?email=$request->email&token=$request->token";
-})
-->name('password.reset.link');
+})->name('password.reset.link');

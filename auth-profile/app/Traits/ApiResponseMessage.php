@@ -22,6 +22,7 @@ trait ApiResponseMessage
 		'email_verified' => "Tu email ha sido verificado correctamente",
 		'email_already_been_verified' => "Tu email ya ha sido verificado antes",
 		'email_verification_sent' => "Te hemos enviado un email de verificación",
+		'user_email_not_verified' => "Debes confirmar tu email antes de acceder a la aplicación",
 
 		// Errores de usuario
 		'wrong_user_id' => "El ID es incorrecto",

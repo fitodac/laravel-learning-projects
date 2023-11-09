@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\RegisterController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\ResetPasswordController;
+use App\Http\Controllers\Api\VerifyAccountController;
 use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\Api\ErrorController;
 use Illuminate\Support\Facades\Route;
@@ -40,10 +41,9 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function(){
 Route::group(['middleware' => ['auth:sanctum']], function(){
 	Route::post('/logout', [AuthController::class, 'logout']);
 
-	Route::post('/email/verify/{id}/{hash}', [AuthController::class, 'verifyAccount']);
-	Route::post('/email/verification-notification', [AuthController::class, 'resendVerificationEmail'])->name('verification.send');
+	Route::post('/email/verify/{id}/{hash}', [VerifyAccountController::class, 'verifyAccount']);
+	Route::post('/email/verification-notification', [VerifyAccountController::class, 'resendVerificationEmail'])->name('verification.send');
 });
-
 
 
 Route::fallback([ErrorController::class, 'error404'])->name('error');
