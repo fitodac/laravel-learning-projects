@@ -3,23 +3,29 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Traits\ApiResponse;
 use App\Traits\ApiResponseMessage;
+use App\Traits\createStorageDirectoryIfDoesNotExists;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\Rule;
+use Intervention\Image\Facades\Image;
+
 
 
 class ProfileController extends Controller
 {
 
-	use ApiResponse, ApiResponseMessage;
+	use ApiResponse, 
+			ApiResponseMessage,
+			createStorageDirectoryIfDoesNotExists;
+
 
 	/**
 	 * Display the specified resource.
 	 */
-	public function index()
+	public function index() : object
 	{
 		$user = auth()->user();
 		$user->tokens;
@@ -38,7 +44,7 @@ class ProfileController extends Controller
 	 * user's ID, and returns a success response with 
 	 * the updated user data.
 	 */
-	public function update(Request $request, int $id)
+	public function update(Request $request, int $id) : object
 	{
 		if( 'PATCH' !== $request->method() ){
 			return $this->errorResponse([], $this->responseMessage('405'), 405);
@@ -73,6 +79,42 @@ class ProfileController extends Controller
 		$user->update($request->all());
 
 		return $this->successResponse($user, $this->responseMessage('profile_updated'));
+	}
+
+
+	/**
+	 * thumbnailProfile
+	 */
+	public function thumbnailProfile(Request $request, int $id)
+	{
+
+		$user = auth()->user();
+
+		if( $id !== $user->id ){
+			return $this->errorResponse([], $this->responseMessage('wrong_user_id'));
+		}
+
+		if( $request->thumbnail ){
+
+			$store_directory = 'public/profiles';
+			if( !$this->storageDirectoryExists($store_directory) ){
+				$this->createStorageDirectory($store_directory);
+			}
+
+			$image_name = "$id.webp";
+
+			$img = Image::make($request->file('thumbnail'))
+							->fit(600, 600)
+							->save("storage/profiles/$image_name", 60);
+			
+			if( $img ){
+				$user->update(['thumbnail' => $image_name]);
+				return $this->successResponse($user, $this->responseMessage('thumbnail_updated'));
+			}
+		}
+		
+		return $this->errorResponse([], $this->responseMessage('thumbnail_updated_error'), 422);
+
 	}
 
 }

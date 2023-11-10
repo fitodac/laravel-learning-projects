@@ -36,6 +36,8 @@ Route::post('/reset-password', [ResetPasswordController::class, 'resetPassword']
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function(){
 	Route::resource('/profile', ProfileController::class)
 	->only(['index', 'update']);
+	
+	Route::post('/profile/{id}/thumbnail', [ProfileController::class, 'thumbnailProfile']);
 });
 
 

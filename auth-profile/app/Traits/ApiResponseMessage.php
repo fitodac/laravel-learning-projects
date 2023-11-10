@@ -1,8 +1,6 @@
 <?php 
 namespace App\Traits;
 
-use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Facades\Response;
 
 trait ApiResponseMessage
 {
@@ -18,6 +16,8 @@ trait ApiResponseMessage
 		// Profile
 		'profile_nothing_has_changed' => "No se han realizado cambios en tu perfil",
 		'profile_updated' => "Hemos actualizado tu perfil",
+		'thumbnail_updated' => "Tu imagen de perfil se ha actualizado correctamente",
+		'thumbnail_updated_error' => "Ha ocurrido un error al actualizar tu imagen de perfil",
 
 		// Verificación de email
 		'email_verified' => "Tu email ha sido verificado correctamente",
