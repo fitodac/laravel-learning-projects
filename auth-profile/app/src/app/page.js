@@ -4,8 +4,9 @@ import Link from 'next/link'
 
 export default function Home() {
 	return (
-		<div className="py-40 space-y-4">
-			<p>Greetings earthling, 
+		<div className="max-w-2xl py-40 space-y-4 mx-auto">
+			<p>
+				<span className="text-indigo-500">Greetings earthling</span>, 
 				<br/>You've come the AuthProfile app, an exercise of users authentication built 
 				with Laravel and Next.js frameworks</p>
 			

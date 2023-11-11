@@ -18,7 +18,8 @@ export default function RootLayout({ children }) {
 
 				<PageHeader />
 
-				<main className="text-slate-600 font-light max-w-5xl mx-auto mt-6 mb-20">
+				<main className="min-h-screen flex">
+					 {/* max-w-5xl mx-auto px-6 mt-6 mb-20 */}
 					{children}
 				</main>
 			</body>

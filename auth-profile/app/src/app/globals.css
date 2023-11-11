@@ -3,7 +3,10 @@
 @tailwind utilities;
 
 body{
-	background: #eee;
+	@apply
+	bg-slate-100
+	text-slate-600
+	font-light;
 }
 
 .main-navbar{
@@ -27,6 +30,54 @@ body{
 
 .page-title{
 	@apply
-	text-3xl
-	font-light;
+	text-xl
+	font-light
+	select-none;
+}
+
+
+/**
+Form
+**/
+form{
+	@apply
+	space-y-5;
+
+	& label{
+		@apply
+		text-sm
+		font-medium
+		select-none;
+	}
+
+	& input[type=text],
+	& input[type=email],
+	& input[type=password]{
+		@apply 
+		border
+		border-slate-200
+		leading-none
+		w-full
+		px-3 
+		py-2
+		rounded-md
+		focus:outline-none;
+	}
+
+	& button{
+		@apply
+		bg-indigo-600
+		border
+		border-indigo-600
+		text-white
+		text-sm
+		leading-tight
+		px-10
+		py-2
+		select-none
+		transition-all
+		rounded-md
+		hover:bg-indigo-500
+		hover:border-indigo-500;
+	}
 }
