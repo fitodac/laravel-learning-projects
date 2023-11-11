@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body{
+	background: #eee;
+}
+
+.main-navbar{
+	@apply 
+	text-slate-500 
+	text-sm 
+	font-medium 
+	flex 
+	justify-end 
+	items-center 
+	gap-x-4;
+
+	& .main-navbar--item{
+		@apply 
+		select-none 
+		transition-all 
+		hover:text-indigo-400;
+	}
+}
+
+
+.page-title{
+	@apply
+	text-3xl
+	font-light;
+}
