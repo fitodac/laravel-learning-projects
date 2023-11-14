@@ -1,16 +1,18 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { MainContext } from '.'
+import { useToken } from '@/hooks'
+
+const userInitialState = () => {
+	const stored_token = useToken().get()
+	return stored_token ? {token: stored_token} : null
+}
 
 export const MainProvider = ({children}) => {
 
-	const [user, setUser] = useState(null)
+	const [user, setUser] = useState(userInitialState)
 	const [auth, setAuth] = useState(false)
-
-	// useEffect(() => {
-	// 	if( user ) setAuth(true)
-	// }, [user])
 
 	return (
 		<MainContext.Provider value={{
