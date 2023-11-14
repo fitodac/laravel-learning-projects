@@ -3,6 +3,7 @@ import Link from 'next/link'
 
 
 export default function Home() {
+
 	return (
 		<div className="max-w-2xl py-40 space-y-4 mx-auto">
 			<p>
