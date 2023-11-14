@@ -12,7 +12,7 @@ import {
 import { 
 	initialValues,
 	handleSubmit,
-	setFakeData,
+	setFakeData
 } from './helpers'
 
 import { 
@@ -20,15 +20,15 @@ import {
 	Loading
 } from '@/components'
 import { Suspense } from 'react'
-import { useRouter } from 'next/navigation'
 import { MainContext } from '@/context'
+import {
+	useEmailVerifyToken
+} from '@/hooks'
 
 
 export default function RegisterPage()
 {
-
-	const router = useRouter()
-	const { setUser } = useContext(MainContext)
+	const { user, setUser } = useContext(MainContext)
 	const [ fetchData, setFetchData ] = useState({})
 
 	const submitForm = async (values, actions) => {
@@ -36,9 +36,9 @@ export default function RegisterPage()
 		if( resp.success ){
 			const { token, token_type } = resp.data
 			setFetchData(resp)
-			setUser(`${token_type} ${token}`)
+			// setUser({...user, token: `${token_type} ${token}`})
+			useEmailVerifyToken({token, token_type}).store()
 			console.log('resp', resp)
-			// router.push('/register/success')
 		}
 	}
 
@@ -108,6 +108,8 @@ export default function RegisterPage()
 											<ErrorMessage name="password_confirmation">{msg => <div className="input-error">{msg}</div>}</ErrorMessage>
 										</div>
 
+										<Field type="hidden" name="device_name" />
+
 										<div className="pt-3 flex justify-between items-center gap-x-6 md:col-span-2">
 											<button type="submit">Register</button>
 											<span
@@ -124,8 +126,8 @@ export default function RegisterPage()
 								) : (
 
 									<div className="w-full max-w-xl mx-auto py-32">
-										<div className="select-none-">
-											<p className="text-green-500 text-xl">Your account has been created successfully</p>
+										<div className="select-none">
+											<p className="notification-title">Your account has been created successfully</p>
 											<p>Please check your email to confirm your account before log in.</p>
 										</div>
 									</div>

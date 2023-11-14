@@ -1,5 +1,6 @@
 import { faker } from '@faker-js/faker'
 import axios from 'axios'
+import { initialValues } from '.'
 
 
 export const handleSubmit = async (values, actions) => {
@@ -26,6 +27,7 @@ export const handleSubmit = async (values, actions) => {
 }
 
 
+
 export const setFakeData = () => {
 	
 	const firstname = faker.person.firstName()
@@ -41,6 +43,7 @@ export const setFakeData = () => {
 			lastName: lastname,
 		}).toLowerCase(),
 		password,
-		password_confirmation: password
+		password_confirmation: password,
+		device_name: initialValues.device_name
 	}
 }
