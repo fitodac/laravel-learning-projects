@@ -49,7 +49,7 @@ export default function LoginPage()
 								</div>
 
 								<div className="pt-3">
-									<button className="w-full">Log In</button>
+									<button type="submit" className="w-full">Log In</button>
 								</div>
 							</div>
 						</Form>
