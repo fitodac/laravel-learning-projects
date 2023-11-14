@@ -70,8 +70,7 @@ class RegisterController extends Controller
 
 		return $this->successResponse([
 			'token' => $token,
-			'token_type' => 'Bearer',
-			'user' => $user
+			'token_type' => 'Bearer'
 		], 
 			$this->responseMessage('register_success'),
 			201

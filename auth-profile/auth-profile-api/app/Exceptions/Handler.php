@@ -6,6 +6,7 @@ use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 use App\Traits\ApiResponse;
 use App\Traits\ApiResponseMessage;
+use Illuminate\Auth\AuthenticationException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -41,5 +42,10 @@ class Handler extends ExceptionHandler
 		}
 
 		return parent::render($request, $exception);
+	}
+
+	public function unauthenticated($request, AuthenticationException $exception)
+	{
+		return $this->errorResponse([], $this->responseMessage('unauthorized'), 401);
 	}
 }
