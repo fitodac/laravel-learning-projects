@@ -89,3 +89,12 @@ form{
 		leading-tight;
 	}
 }
+
+
+
+.notification-title{
+	@apply 
+	text-indigo-500 
+	text-lg 
+	font-medium;
+}
