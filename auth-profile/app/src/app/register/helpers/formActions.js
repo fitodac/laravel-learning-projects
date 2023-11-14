@@ -1,10 +1,28 @@
 import { faker } from '@faker-js/faker'
+import axios from 'axios'
 
 
-export const handleSubmit = (values, actions) => {
-	console.log('values', values)
+export const handleSubmit = async (values, actions) => {
 	actions.setSubmitting(true)
-	setTimeout(() => { actions.setSubmitting(false) }, 1000)
+
+	const resp = await axios.post(
+		`${process.env.NEXT_PUBLIC_API_URL}/register`, 
+		values
+	)
+	.then(resp => {
+		return resp.data
+	})
+	.catch(err => {
+		const error = err.response.data
+		actions.setErrors(error.data)
+		actions.setSubmitting(false)
+		return error
+	})
+	// .finally(() => {
+	// 	actions.setSubmitting(false)
+	// })
+
+	return resp
 }
 
 

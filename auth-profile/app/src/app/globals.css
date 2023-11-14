@@ -64,7 +64,7 @@ form{
 		focus:outline-none;
 	}
 
-	& button{
+	& [type=submit]{
 		@apply
 		bg-indigo-600
 		border
@@ -79,5 +79,13 @@ form{
 		rounded-md
 		hover:bg-indigo-500
 		hover:border-indigo-500;
+	}
+
+	& .input-error{
+		@apply
+		text-pink-700
+		text-xs
+		font-medium
+		leading-tight;
 	}
 }
