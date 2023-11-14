@@ -30,8 +30,6 @@ class AuthServiceProvider extends ServiceProvider
 
 
 			VerifyEmail::toMailUsing(function (object $notifiable, string $url) {
-				
-				$user = auth()->user();
 
 				return (new MailMessage)
 					->subject('Acción requerida: verifica tu email')

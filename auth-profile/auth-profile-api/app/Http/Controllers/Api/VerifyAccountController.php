@@ -14,17 +14,20 @@ class VerifyAccountController extends Controller
 	use ApiResponse, ApiResponseMessage;
 
 
-	// public function verifyAccount(EmailVerificationRequest $request)
 	public function verifyAccount(Request $request, int $id, string $hash)
 	{
 
 		$user = auth()->user();
 
+		if( !$user ){
+			return $this->errorResponse([], $this->responseMessage('unauthorized'), 401);
+		}
+
 		if( 
 			!hash_equals(sha1($user->getEmailForVerification()), (string) $hash) 
 			or !hash_equals( (string) $user->id, (string) $id )
 		){
-			return $this->errorResponse([], $this->responseMessage('unauthorized'), 403);
+			return $this->errorResponse([], $this->responseMessage('unauthorized'), 401);
 		}
 
 
