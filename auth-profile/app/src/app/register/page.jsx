@@ -1,6 +1,9 @@
 'use client'
 
-import { useState, useContext } from 'react'
+import { 
+	useState, 
+	Suspense 
+} from 'react'
 
 import {
 	Formik,
@@ -19,8 +22,7 @@ import {
 	SideBackground,
 	Loading
 } from '@/components'
-import { Suspense } from 'react'
-import { MainContext } from '@/context'
+
 import {
 	useEmailVerifyToken
 } from '@/hooks'
@@ -28,7 +30,7 @@ import {
 
 export default function RegisterPage()
 {
-	const { user, setUser } = useContext(MainContext)
+
 	const [ fetchData, setFetchData ] = useState({})
 
 	const submitForm = async (values, actions) => {
@@ -36,9 +38,7 @@ export default function RegisterPage()
 		if( resp.success ){
 			const { token, token_type } = resp.data
 			setFetchData(resp)
-			// setUser({...user, token: `${token_type} ${token}`})
 			useEmailVerifyToken({token, token_type}).store()
-			console.log('resp', resp)
 		}
 	}
 
@@ -54,8 +54,8 @@ export default function RegisterPage()
 					<Formik 
 						initialValues={initialValues}
 						onSubmit={submitForm}>
-						{({setValues, isSubmitting }) => ( 
-							<Form className="max-w-xl mt-7 relative">
+						{({ setValues, isSubmitting }) => ( 
+							<Form className={`mt-4 ${isSubmitting ? 'opacity-20' : ''}`}>
 								
 								<Loading status={isSubmitting} />
 

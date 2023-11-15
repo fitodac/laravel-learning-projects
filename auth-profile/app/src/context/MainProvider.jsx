@@ -1,21 +1,32 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { MainContext } from '.'
-import { useToken } from '@/hooks'
+import { useGetUser } from '@/hooks'
 
-const userInitialState = () => {
-	const stored_token = useToken().get()
-	return stored_token ? {token: stored_token} : null
-}
 
 export const MainProvider = ({children}) => {
 
-	const [user, setUser] = useState(userInitialState)
+	const [init, setInit] = useState(false)
+	const [user, setUser] = useState(null)
 	const [auth, setAuth] = useState(false)
+
+
+	useEffect(() => {
+		
+		(async function(){
+			const data = await useGetUser()
+			delete data.data.tokens
+			setAuth(data.success)
+			setUser(data.success ? data.data : null)
+			setInit(true)
+		})()
+
+	}, [])
 
 	return (
 		<MainContext.Provider value={{
+			init,
 			user,
 			setUser,
 			auth,

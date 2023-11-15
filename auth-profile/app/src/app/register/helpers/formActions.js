@@ -19,9 +19,6 @@ export const handleSubmit = async (values, actions) => {
 		actions.setSubmitting(false)
 		return error
 	})
-	// .finally(() => {
-	// 	actions.setSubmitting(false)
-	// })
 
 	return resp
 }

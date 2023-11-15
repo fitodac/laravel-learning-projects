@@ -23,7 +23,12 @@ body{
 		@apply 
 		select-none 
 		transition-all 
-		hover:text-indigo-400;
+		hover:text-indigo-300;
+
+		&.active{
+			@apply
+			text-indigo-400;
+		}
 	}
 }
 

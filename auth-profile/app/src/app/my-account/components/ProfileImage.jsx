@@ -34,6 +34,7 @@ export const ProfileImage = () => {
 						src="/background.jpg"
 						width="200" 
 						height="200" 
+						alt="User thumbnail"
 						className="w-full h-full object-cover"
 					/>
 				</div>

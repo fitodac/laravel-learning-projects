@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Traits\ApiResponse;
 use App\Traits\ApiResponseMessage;
@@ -31,7 +32,7 @@ class AuthController extends Controller
 			return $this->errorResponse($validate->errors(), 'Error', 422);
 		}
 
-		$remember_token = $request->input('remember') ? Str::random(10) : null;
+		// $remember_token = $request->input('remember') ? Str::random(10) : null;
 		$device_name = $request->input('device_name', 'webToken');
 
 		if( $validate->fails() ){
@@ -47,8 +48,7 @@ class AuthController extends Controller
 		if( !$user->email_verified_at ){
 			return $this->errorResponse([], $this->responseMessage('user_email_not_verified'), 401);
 		}
-		
-		$user->update(['remember_token' => $remember_token]);
+
 		$token = $user->createToken($device_name)->plainTextToken;
 
 		/**
@@ -74,7 +74,7 @@ class AuthController extends Controller
 		return $this->successResponse([
 			'token' => $token,
 			'token_type' => 'Bearer',
-			'remember_token' => $remember_token,
+			// 'remember_token' => $remember_token,
 			'user' => $user
 		]);
 

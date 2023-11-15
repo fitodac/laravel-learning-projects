@@ -1,17 +1,49 @@
 'use client'
 
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { useContext } from 'react'
 import { MainContext } from '@/context'
+
+
+
+const UserName = ({user}) => {
+	if( user ){
+		return (
+			<div className="flex items-center gap-x-2">
+				{user.firstname && user.lastname && (
+					<div className="bg-indigo-600 w-8 h-8 rounded-full overflow-hidden">
+						<div className="text-white text-xs font-light w-full h-full grid place-content-center">
+							{user?.firstname[0]}
+							{user?.lastname[0]}
+						</div>
+					</div>
+				)}
+
+				{user.firstname && (<span className="text-xs pr-6">Hello {user.firstname}</span>)}
+			</div>
+		)
+	}else{
+		return null
+	}
+}
+
+
+
 
 
 export const PageHeader = () =>
 {
 
 	const {
+		init,
 		user,
 		auth
 	} = useContext(MainContext)
+
+	const pathname = usePathname()
+
+	if( !init ) return 
 
 	return (
 		<div className="bg-white border-b-border-slate-100 px-6 inset-x-0 fixed z-10">
@@ -26,16 +58,15 @@ export const PageHeader = () =>
 
 					{auth ? (
 						<>
-							<div className="bg-indigo-600 w-8 h-8 rounded-full overflow-hidden">
-								<div className="text-white text-xs font-light w-full h-full grid place-content-center">JD</div>
-							</div>
+							<UserName user={user} />
 
-							<Link href="/my-account" className="main-navbar--item">Profile</Link>
+							<Link href="/my-account" className={`main-navbar--item ${pathname === '/my-account' ? 'active' : ''}`}>Profile</Link>
+							<Link href="/logout" className="main-navbar--item">Logout</Link>
 						</>
 					) : (
 						<>
-							<Link href="/login" className="main-navbar--item">Log in</Link>
-							<Link href="/register" className="main-navbar--item">Create Account</Link>
+							<Link href="/login" className={`main-navbar--item ${pathname === '/login' ? 'active' : ''}`}>Log in</Link>
+							<Link href="/register" className={`main-navbar--item ${pathname === '/register' ? 'active' : ''}`}>Create Account</Link>
 						</>
 					)}
 				</nav>

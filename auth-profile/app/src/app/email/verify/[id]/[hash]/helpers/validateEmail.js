@@ -21,14 +21,8 @@ export const validateEmail = async ({
 				}
 			}
 		)
-		.then(resp => {
-			console.log('resp', resp)
-			return resp.data
-		})
-		.catch(err => {
-			console.log('error', err.response.data)
-			return err.response.data
-		})
+		.then(resp => resp.data)
+		.catch(err => err.response.data)
 
 		return resp
 	} else {
