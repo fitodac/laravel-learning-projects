@@ -1,5 +1,9 @@
 'use client'
 
+import { redirect } from 'next/navigation'
+import { useContext } from 'react'
+import { MainContext } from '@/context'
+
 import {
 	Formik,
 	Form,
@@ -16,8 +20,14 @@ import { ProfileImage } from './components/ProfileImage'
 
 
 
+
 export default function ProfilePage()
 {
+
+	const { auth } = useContext(MainContext)
+
+	if( !auth ) redirect('/')
+	
 	return (
 		<>
 			<SideBackground />
@@ -76,7 +86,7 @@ export default function ProfilePage()
 								</div>
 
 								<div className="pt-3">
-									<button>Register</button>
+									<button type="submit">Update</button>
 								</div>
 
 							</div>
@@ -86,4 +96,5 @@ export default function ProfilePage()
 			</div>
 		</>
 	)
+
 }

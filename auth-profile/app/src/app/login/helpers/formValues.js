@@ -1,5 +1,5 @@
 export const initialValues = {
-	email: '',
-	password: '',
+	email: 'clement_fay69@yahoo.com',
+	password: 'ay85Ubpq',
 	remember: false
 }
