@@ -1,36 +1,34 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+### ¿Qué es esto?
+Esto es parte de una aplicación que usa Laravel 10 para el backend y Next.js 14 para el frontend usando JWT para autenticar un usuario y permitirle ver una sencilla página con sus datos en donde podrá modificarlos y subir una foto.
 
-## Getting Started
+Representa un ejercicio de cómo implementar buenas prácticas en autenticación en una aplicación de este tipo.
+<br>
+<br>
 
-First, run the development server:
 
+### Para ejecutar esta aplicación
+1. Sitúate en la carpeta principal del proyecto
+
+2. Ejecuta
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm i
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3. Crea un .env
+```bash
+cp .env.example .env
+```
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+4. Completa los datos
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+`NEXT_PUBLIC_API_URL`: Será la URL de Laravel
 
-## Learn More
+`APP_VERSION`: Puede ser `1` o lo qeu quieras 
 
-To learn more about Next.js, take a look at the following resources:
+`NEXT_PUBLIC_PREFIX`: Un string que quieras usar para identificar la aplicación, por ejemplo `authAPP` o lo que quieras.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+3. Finalmente ejecuta la aplicación con
+```bash
+npm run dev
+```
