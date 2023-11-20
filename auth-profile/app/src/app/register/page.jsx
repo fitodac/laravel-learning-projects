@@ -5,6 +5,8 @@ import {
 	Suspense 
 } from 'react'
 
+import Link from 'next/link'
+
 import {
 	Formik,
 	Form,
@@ -20,12 +22,13 @@ import {
 
 import { 
 	SideBackground,
-	Loading
+	Loading,
+	FormSuccessMessage
 } from '@/components'
 
-import {
-	useEmailVerifyToken
-} from '@/hooks'
+import { useEmailVerifyToken } from '@/hooks'
+
+import { passwordToggleVisibility } from '@/helpers'
 
 
 export default function RegisterPage()
@@ -49,7 +52,7 @@ export default function RegisterPage()
 
 			<Suspense>
 				<div className="w-full px-6 pt-20 pb-20 mx-auto xl:px-14">
-					<div className="page-title">Create Account</div>
+					<div className="page-title">Registrarme</div>
 
 					<Formik 
 						initialValues={initialValues}
@@ -63,7 +66,7 @@ export default function RegisterPage()
 
 									<div className={`space-y-3 md:grid md:grid-cols-2 md:gap-x-6 md:gap-y-3 md:space-y-0 ${isSubmitting ? 'opacity-20' : ''}`}>
 										<div className="">
-											<label>Username</label>
+											<label>Nombre de usuario</label>
 											<Field type="text" name="name" autoComplete="off" />
 											<ErrorMessage name="name">{msg => <div className="input-error">{msg}</div>}</ErrorMessage>
 										</div>
@@ -75,35 +78,32 @@ export default function RegisterPage()
 										</div>
 										
 										<div className="">
-											<label>First name</label>
+											<label>Nombre</label>
 											<Field type="text" name="firstname" autoComplete="off" />
 											<ErrorMessage name="firstname">{msg => <div className="input-error">{msg}</div>}</ErrorMessage>
 										</div>
 
 										<div className="">
-											<label>Last name</label>
+											<label>Apellido</label>
 											<Field type="text" name="lastname" autoComplete="off" />
 											<ErrorMessage name="lastname">{msg => <div className="input-error">{msg}</div>}</ErrorMessage>
 										</div>
 
 										<div className="">
-											<label>Password</label>
+											<label>Contraseña</label>
 											<Field type="password" name="password" />
 											
 											<span 
 												className="text-xs font-medium mt-1 flex justify-end cursor-pointer select-none"
-												onClick={() => {
-													const type = document.querySelector('[name=password]').getAttribute('type')
-													document.querySelector('[name=password]').setAttribute('type', type === 'password' ? 'text' : 'password')
-												}}>
-												Show password
+												onClick={passwordToggleVisibility}>
+												Ver contraseña
 											</span>
 
 											<ErrorMessage name="password">{msg => <div className="input-error">{msg}</div>}</ErrorMessage>
 										</div>
 
 										<div className="">
-											<label>Confirm password</label>
+											<label>Confirma tu contraseña</label>
 											<Field type="password" name="password_confirmation" />
 											<ErrorMessage name="password_confirmation">{msg => <div className="input-error">{msg}</div>}</ErrorMessage>
 										</div>
@@ -117,26 +117,32 @@ export default function RegisterPage()
 												onClick={() => {
 													setValues(setFakeData())
 												}}>
-												Auto complete form with fake data
+												Autocompletar el formulario con datos random
 											</span>
 										</div>
 
 									</div>
 
 								) : (
-
-									<div className="w-full max-w-xl mx-auto py-32">
-										<div className="select-none">
-											<p className="notification-title">Your account has been created successfully</p>
-											<p>Please check your email to confirm your account before log in.</p>
-										</div>
-									</div>
+									<FormSuccessMessage>
+										<p className="notification-title">Tu cuenta ha sido creada con éxito</p>
+										<p>Por favor, revisa tu email para confirmar tu cuenta antes de ingresar.</p>
+									</FormSuccessMessage>
 
 								) }
 							</Form>
 						)}
 					</Formik>
+					
+					<div className="flex justify-center pt-12">
+						<Link 
+							href="/login"
+							className="text-indigo-500 text-sm font-medium">
+							Ya tengo una cuenta
+						</Link>
+					</div>
 				</div>
+
 			</Suspense>
 		</>
 	)
