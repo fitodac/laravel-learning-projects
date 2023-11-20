@@ -60,13 +60,13 @@ export const PageHeader = () =>
 						<>
 							<UserName user={user} />
 
-							<Link href="/my-account" className={`main-navbar--item ${pathname === '/my-account' ? 'active' : ''}`}>Profile</Link>
-							<Link href="/logout" className="main-navbar--item">Logout</Link>
+							<Link href="/my-account" className={`main-navbar--item ${pathname === '/my-account' ? 'active' : ''}`}>Mi Cuenta</Link>
+							<Link href="/logout" className="main-navbar--item">Salir</Link>
 						</>
 					) : (
 						<>
-							<Link href="/login" className={`main-navbar--item ${pathname === '/login' ? 'active' : ''}`}>Log in</Link>
-							<Link href="/register" className={`main-navbar--item ${pathname === '/register' ? 'active' : ''}`}>Create Account</Link>
+							<Link href="/login" className={`main-navbar--item ${pathname === '/login' ? 'active' : ''}`}>Entrar</Link>
+							<Link href="/register" className={`main-navbar--item ${pathname === '/register' ? 'active' : ''}`}>Registrarme</Link>
 						</>
 					)}
 				</nav>
