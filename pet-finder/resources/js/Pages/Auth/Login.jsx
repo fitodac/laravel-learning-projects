@@ -1,11 +1,11 @@
 import { useEffect } from 'react'
-import Checkbox from '@/Components/Checkbox'
-import GuestLayout from '@/Layouts/GuestLayout'
-import InputError from '@/Components/InputError'
-import InputLabel from '@/Components/InputLabel'
-import PrimaryButton from '@/Components/PrimaryButton'
-import SecondaryButton from '@/Components/SecondaryButton'
-import TextInput from '@/Components/TextInput'
+import Checkbox from '@/components/Checkbox'
+import GuestLayout from '@/layouts/GuestLayout'
+import InputError from '@/components/InputError'
+import InputLabel from '@/components/InputLabel'
+import PrimaryButton from '@/components/PrimaryButton'
+import SecondaryButton from '@/components/SecondaryButton'
+import TextInput from '@/components/TextInput'
 import { Head, Link, useForm } from '@inertiajs/react'
 
 export default function Login({ status, canResetPassword }) {
