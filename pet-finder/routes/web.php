@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PetController;
+use App\Http\Controllers\Profile\UserPetsController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -18,11 +19,9 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
-	return Inertia::render('Welcome', [
+	return Inertia::render('Home', [
 		'canLogin' => Route::has('login'),
-		'canRegister' => Route::has('register'),
-		'laravelVersion' => Application::VERSION,
-		'phpVersion' => PHP_VERSION,
+		'canRegister' => Route::has('register')
 	]);
 });
 
@@ -41,13 +40,21 @@ Route::get('/dashboard', function () {
 	return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-
 Route::middleware('auth')->group(function () {
 	Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
 	Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
 	Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-	// Route::get('/{username}/pets', ProfileController);
+	Route::resource('/{user:username}/pets', UserPetsController::class)
+		->names([
+			'index' => 'user.pets',
+			'create' => 'user.pets.create',
+			'store' => 'user.pets.store',
+			'show' => 'user.pets.show',
+			'edit' => 'user.pets.edit',
+			'update' => 'user.pets.update',
+			'destroy' => 'user.pets.destroy',
+		]);
 });
 
 require __DIR__ . '/auth.php';
