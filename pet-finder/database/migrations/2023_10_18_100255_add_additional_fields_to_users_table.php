@@ -14,9 +14,9 @@ return new class extends Migration
 		Schema::table('users', function (Blueprint $table) {
 			$table->string('username')->after('id');
 			$table->string('lastname')->after('name');
-			$table->string('whatsapp')->after('password');
-			$table->string('instagram_user')->after('whatsapp');
-			$table->string('facebook_user')->after('instagram_user');
+			$table->string('whatsapp')->after('password')->nullable();
+			$table->string('instagram_user')->after('whatsapp')->nullable();
+			$table->string('facebook_user')->after('instagram_user')->nullable();
 			
 			$table->unsignedBigInteger('province_id')->nullable()->after('facebook_user');
 			$table->foreign('province_id')->references('id')->on('provinces')->onUpdate('cascade')->onDelete('cascade');

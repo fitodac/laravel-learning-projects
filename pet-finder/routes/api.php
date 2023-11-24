@@ -16,17 +16,3 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-	return $request->user();
-});
-
-Route::get('/', function(){
-	return 'Hello pet finder';
-});
-
-Route::get('/provinces', [ProvinceController::class, 'index']);
-Route::get('/provinces/{province:name}', [ProvinceController::class, 'show']);
-
-Route::get('/{user:username}', [UserController::class, 'show']);
-Route::get('/{user:username}/pet/{pet}', [PetController::class, 'show']);
