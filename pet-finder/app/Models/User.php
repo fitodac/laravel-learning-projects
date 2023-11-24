@@ -19,9 +19,9 @@ class User extends Authenticatable
 	 * @var array<int, string>
 	 */
 	protected $fillable = [
-			'name',
-			'email',
-			'password',
+		'name',
+		'email',
+		'password',
 	];
 
 	/**
@@ -44,8 +44,9 @@ class User extends Authenticatable
 		'password' => 'hashed',
 	];
 
-	public function pets(){
-		return $this->hasMany(Pet::class)->with('breed');
+	public function pets()
+	{
+		return $this->hasMany(Pet::class)->orderBy('created_at', 'desc')->with('breed');
 	}
 
 	public function province()
@@ -57,5 +58,4 @@ class User extends Authenticatable
 	{
 		return $this->belongsTo(City::class)->select(['id', 'name']);
 	}
-
 }
