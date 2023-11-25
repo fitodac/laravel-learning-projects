@@ -10,8 +10,14 @@ import { MyPetProvider, myPetContext } from '../context'
 
 export const CreateEditPetForm = ({ initialValues }) => {
 	const { user } = useContext(Context)
-	const { data, setData, loading, errors, handleChange, handleSubmit } =
-		useContext(myPetContext)
+	const {
+		data,
+		setData,
+		loading,
+		errors,
+		handleChange,
+		handleSubmit,
+	} = useContext(myPetContext)
 	const { t } = useLaravelReactI18n()
 
 	useEffect(() => {
@@ -149,7 +155,7 @@ export const CreateEditPetForm = ({ initialValues }) => {
 										user: user.username,
 									})}
 								>
-									{t('ui.cancel')}
+									{t('ui.cancel')} / {t('ui.back')}
 								</Link>
 							)}
 

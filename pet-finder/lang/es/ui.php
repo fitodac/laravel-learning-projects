@@ -7,5 +7,6 @@ return [
 	'save' => "Guardar",
 	'delete' => "Eliminar",
 	'action can not be undone' => "Esta acción no podrá deshacerse",
-	'cancel' => "Cancelar"
+	'cancel' => "Cancelar",
+	'back' => "Volver"
 ];

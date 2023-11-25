@@ -1,11 +1,12 @@
 import { useContext, useEffect, useState } from 'react'
 import { myPetContext } from '.'
 import { useForm } from '@inertiajs/react'
+import { Context } from '@/context'
 
 export const MyPetProvider = ({ children }) => {
 	const context = useContext(myPetContext)
-	const { data, setData, post, patch, processing, progress, errors } =
-		useForm(context)
+	const { user } = useContext(Context)
+	const { data, setData, post, patch, processing, errors } = useForm(context)
 
 	const [loading, setLoading] = useState(false)
 
@@ -42,7 +43,6 @@ export const MyPetProvider = ({ children }) => {
 			value={{
 				data,
 				setData,
-				processing,
 				errors,
 				loading,
 				setLoading,

@@ -40,14 +40,16 @@ export const DeletePet = ({ pet }) => {
 
 			{modal && (
 				<div className="bg-black bg-opacity-70 grid place-content-center inset-0 fixed z-50">
-					<div className="bg-slate-800 w-96 rounded-md">
+					<div className="bg-slate-800 w-96 relative rounded-md">
 						<div className="p-5 space-y-2">
 							<div className="">
 								<p>
 									{`${t('profile.delete pet info')}: `}
 									<span className="text-white font-bold">{pet.name}</span>
 								</p>
-								{t('ui.action can not be undone')}
+								<p className="text-red-500 font-medium">
+									{t('ui.action can not be undone')}
+								</p>
 							</div>
 
 							<form
@@ -65,6 +67,11 @@ export const DeletePet = ({ pet }) => {
 								</div>
 							</form>
 						</div>
+
+						<i
+							className="ri-close-line ri-xl right-1 top-2 absolute cursor-pointer transition-all hover:opacity-50"
+							onClick={() => setModal(false)}
+						/>
 					</div>
 				</div>
 			)}

@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\Pet;
 use App\Traits\createStorageDirectoryIfDoesNotExists;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\File;
 
 class UserPetsController extends Controller
 {
@@ -122,6 +123,14 @@ class UserPetsController extends Controller
 		$request->validate([
 			'name' => 'required|same:pet_name'
 		]);
+
+		if (isset($pet->picture)) {
+			$src = "storage/pets/$id.webp";
+
+			if (File::exists($src)) {
+				File::delete($src);
+			}
+		}
 
 		$pet->delete();
 

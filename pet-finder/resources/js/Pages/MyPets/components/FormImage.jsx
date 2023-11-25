@@ -4,6 +4,11 @@ import { Img } from 'react-image'
 import { myPetContext } from '../context'
 import { useForm, usePage } from '@inertiajs/react'
 
+const fileToUrl = (file) => {
+	const reader = new FileReader()
+	return reader.readAsDataURL(file)
+}
+
 export const FormImage = () => {
 	const { data, setData, setLoading } = useContext(myPetContext)
 
@@ -24,14 +29,10 @@ export const FormImage = () => {
 	const [imgSrc, setImgSrc] = useState(null)
 
 	useEffect(() => {
-		setImgSrc(`${url}/storage/pets/${data.picture}`)
+		if (data.id) {
+			setImgSrc(`${url}/storage/pets/${data.picture}`)
+		}
 	}, [data])
-
-	useEffect(() => {
-		document.addEventListener('FilePond:addfilestart', () => {
-			setLoading(true)
-		})
-	}, [])
 
 	useEffect(() => {
 		setLoading(processing)
@@ -42,11 +43,11 @@ export const FormImage = () => {
 	 */
 	const updateImage = () => {
 		post(route('images.upload'))
-
-		setImgSrc(null)
-		setTimeout(() => {
-			setImgSrc(`${url}/storage/pets/${data.picture}`)
-		}, 10)
+		setData('picture', `${data.id}.webp`)
+		// setImgSrc(null)
+		// setTimeout(() => {
+		// 	setImgSrc(`${url}/storage/pets/${data.picture}`)
+		// }, 10)
 	}
 
 	return (
@@ -58,7 +59,6 @@ export const FormImage = () => {
 			>
 				{imgSrc && <Img src={imgSrc} alt={data?.name} />}
 
-				{/* onupdatefiles={() => setLoading(true)} */}
 				<FilePond
 					allowMultiple={false}
 					server={{
@@ -75,12 +75,20 @@ export const FormImage = () => {
 							load(Date.now())
 						},
 					}}
+					onaddfilestart={() => {
+						console.log('addfilestart')
+						setLoading(true)
+					}}
 					onprocessfile={(error, file) => {
 						if (error) console.log('error', error)
 
 						if (data.id) {
 							updateImage()
 						}
+
+						console.log('onprocessfile')
+						setImgSrc(URL.createObjectURL(file.file))
+						setLoading(false)
 					}}
 				/>
 			</div>

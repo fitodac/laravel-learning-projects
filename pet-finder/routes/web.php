@@ -21,10 +21,14 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
-	return Inertia::render('Home', [
-		'canLogin' => Route::has('login'),
-		'canRegister' => Route::has('register')
-	]);
+	if (auth()->user()) {
+		return redirect()->route('user.pets', ['user' => auth()->user()->username]);
+	} else {
+		return Inertia::render('Home', [
+			'canLogin' => Route::has('login'),
+			'canRegister' => Route::has('register')
+		]);
+	}
 });
 
 
@@ -38,9 +42,9 @@ Route::resource('/pets', PetController::class)->names([
 
 
 
-Route::get('/dashboard', function () {
-	return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+// 	return Inertia::render('Dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
 	Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

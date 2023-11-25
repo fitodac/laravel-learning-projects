@@ -18,7 +18,7 @@ return new class extends Migration
 			$table->unsignedBigInteger('user_id');
 			$table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
 
-			$table->string('picture')->default('');
+			$table->string('picture')->nullable()->default('');
 			$table->string('species');
 			$table->enum('gender', ['macho', 'hembra']);
 			$table->text('description');
