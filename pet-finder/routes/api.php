@@ -1,8 +1,5 @@
 <?php
 
-use App\Http\Controllers\Api\PetController;
-use App\Http\Controllers\Api\ProvinceController;
-use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 

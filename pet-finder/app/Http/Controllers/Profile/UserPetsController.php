@@ -66,7 +66,6 @@ class UserPetsController extends Controller
 			}
 		}
 
-
 		return redirect()->route('user.pets', ['user' => $user->username]);
 	}
 
@@ -94,8 +93,6 @@ class UserPetsController extends Controller
 	public function update(User $user, string $id, Request $request)
 	{
 
-		dd(json_encode($request->except(['picture', '_token'])));
-
 		$request->validate([
 			'name' => 'required',
 			'species' => 'required',
@@ -111,6 +108,8 @@ class UserPetsController extends Controller
 			'pet' => $id
 		]);
 	}
+
+
 
 	/**
 	 * Remove the specified resource from storage.

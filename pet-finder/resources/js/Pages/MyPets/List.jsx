@@ -1,9 +1,10 @@
 import AuthenticatedLayout from '@/layouts/AuthenticatedLayout'
 import { Link, Head } from '@inertiajs/react'
-import { ButtonPrimary, List, Grid } from '@/components'
+// import { ButtonPrimary, List, Grid } from '@/components'
 import { useLaravelReactI18n } from 'laravel-react-i18n'
+import { Img } from 'react-image'
 
-export default function PetsListPage({ auth, pets }) {
+export default function PetsListPage({ auth, ziggy, pets }) {
 	const { user } = auth
 	const { t } = useLaravelReactI18n()
 
@@ -21,12 +22,19 @@ export default function PetsListPage({ auth, pets }) {
 			<div className="text-slate-400 max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
 				{pets && (
 					<div className="space-y-2">
-						{pets.map(({ id, name, breed, gender, species }) => (
+						{pets.map(({ id, name, breed, gender, species, picture }) => (
 							<div
 								key={`pet_${id}`}
 								className="bg-slate-800 grid grid-cols-10 rounded-md"
 							>
-								<div className="col-span-2"></div>
+								<div className="col-span-2">
+									<Img
+										src={`${ziggy.url}/storage/pets/${picture}`}
+										alt={name}
+										className="w-full h-32 object-cover object-top rounded-l-md"
+										loading="lazy"
+									/>
+								</div>
 
 								<div className="col-span-3 p-4">
 									<div className="font-semibold">{name}</div>

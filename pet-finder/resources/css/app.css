@@ -5,3 +5,7 @@
 input {
 	@apply text-slate-600;
 }
+
+.filepond--credits {
+	display: none !important;
+}

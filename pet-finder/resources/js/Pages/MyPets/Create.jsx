@@ -1,8 +1,8 @@
 import AuthenticatedLayout from '@/layouts/AuthenticatedLayout'
-import { Link, Head } from '@inertiajs/react'
+import { Head } from '@inertiajs/react'
 import { CreateEditPetForm } from './components'
-import { initialValues } from './helpers'
 import { useLaravelReactI18n } from 'laravel-react-i18n'
+import { MyPetProvider } from './context'
 
 export default function PetCreateEditPage({ auth }) {
 	const { user } = auth
@@ -19,11 +19,11 @@ export default function PetCreateEditPage({ auth }) {
 		>
 			<Head title={t('navbar.menu.my_pets')} />
 
-			<div className="text-slate-300 max-w-7xl mx-auto py-10">
-				<CreateEditPetForm
-					initialValues={initialValues}
-				/>
-			</div>
+			<MyPetProvider>
+				<div className="text-slate-300 max-w-7xl mx-auto py-10">
+					<CreateEditPetForm />
+				</div>
+			</MyPetProvider>
 		</AuthenticatedLayout>
 	)
 }

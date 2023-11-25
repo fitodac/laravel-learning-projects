@@ -1,6 +1,8 @@
 <?php
 
+
 use App\Http\Controllers\PetController;
+use App\Http\Controllers\ImagesController;
 use App\Http\Controllers\Profile\UserPetsController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
@@ -55,6 +57,8 @@ Route::middleware('auth')->group(function () {
 			'update' => 'user.pets.update',
 			'destroy' => 'user.pets.destroy',
 		]);
+
+	Route::post('/images/upload', [ImagesController::class, 'upload'])->name('images.upload');
 });
 
 require __DIR__ . '/auth.php';

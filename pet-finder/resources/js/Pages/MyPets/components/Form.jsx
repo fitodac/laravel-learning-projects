@@ -1,70 +1,36 @@
-import { useContext } from 'react'
+import { useEffect, useContext } from 'react'
 import { ButtonPrimary, InputError } from '@/components'
-import { useForm } from '@inertiajs/react'
+import { Link } from '@inertiajs/react'
 import { Context } from '@/context'
 import { useLaravelReactI18n } from 'laravel-react-i18n'
-import { DeletePet } from '.'
-import { inputChange, inputChangeFile } from '@/helpers'
+import { DeletePet, FormImage } from '.'
+
+import 'filepond/dist/filepond.min.css'
+import { MyPetProvider, myPetContext } from '../context'
 
 export const CreateEditPetForm = ({ initialValues }) => {
 	const { user } = useContext(Context)
-	const { data, setData, post, patch, put, processing, progress, errors } =
-		useForm({
-			...initialValues,
-		})
+	const { data, setData, loading, errors, handleChange, handleSubmit } =
+		useContext(myPetContext)
 	const { t } = useLaravelReactI18n()
 
-	const handleChange = (e) => {
-		const val = inputChange(e)
-		setData({ ...data, ...val })
-	}
-
-	const handleSubmit = (e) => {
-		e.preventDefault()
-
-		console.log(data)
-
-		if (data.id) {
-			patch(
-				route('user.pets.update', { user: user.username, pet: data.id }),
-				data,
-				{
-					headers: { 'Content-Type': 'application/json' },
-				}
-			)
-		} else {
-			post(route('user.pets.store', { user: user.username }))
-		}
-	}
+	useEffect(() => {
+		// console.log(setData)
+		if (initialValues) setData(initialValues)
+	}, [])
 
 	return (
 		<>
 			<div className="max-w-5xl mx-auto">
 				<form
-					className={`transition-all ${processing ? 'opacity-30' : ''}`}
+					className={`transition-all ${
+						loading ? 'opacity-30 pointer-events-none' : ''
+					}`}
 					onSubmit={handleSubmit}
 				>
 					<section className="grid grid-cols-4 gap-10">
 						<div className="">
-							{data.picture && (
-								<img src={URL.createObjectURL(data.picture)} alt={data?.name} />
-							)}
-
-							<div className="h-5" />
-
-							<input
-								type="file"
-								name="picture"
-								onChange={(e) => setData('picture', e.target.files[0])}
-							/>
-
-							<pre>{JSON.stringify(progress, null, 2)}</pre>
-
-							{progress && (
-								<progress value={progress.percentage} max="100">
-									{progress.percentage}%
-								</progress>
-							)}
+							<FormImage />
 						</div>
 
 						<div className="grid grid-cols-2 gap-5 col-span-3">
@@ -75,6 +41,7 @@ export const CreateEditPetForm = ({ initialValues }) => {
 									name="name"
 									value={data.name}
 									onChange={handleChange}
+									disabled={loading}
 								/>
 								<InputError error={errors.name} />
 							</div>
@@ -91,6 +58,7 @@ export const CreateEditPetForm = ({ initialValues }) => {
 											value="dog"
 											checked={data.species === 'dog'}
 											onChange={handleChange}
+											disabled={loading}
 										/>
 										<span>Perro</span>
 									</label>
@@ -102,6 +70,7 @@ export const CreateEditPetForm = ({ initialValues }) => {
 											value="cat"
 											checked={data.species === 'cat'}
 											onChange={handleChange}
+											disabled={loading}
 										/>
 										<span>Gato</span>
 									</label>
@@ -116,6 +85,7 @@ export const CreateEditPetForm = ({ initialValues }) => {
 									name="breed_id"
 									value={data.breed_id}
 									onChange={handleChange}
+									disabled={loading}
 								/>
 								<InputError error={errors.breed_id} />
 							</div>
@@ -127,6 +97,7 @@ export const CreateEditPetForm = ({ initialValues }) => {
 									name="gender"
 									value={data.gender}
 									onChange={handleChange}
+									disabled={loading}
 								/>
 								<InputError error={errors.gender} />
 							</div>
@@ -138,6 +109,7 @@ export const CreateEditPetForm = ({ initialValues }) => {
 									name="description"
 									value={data.description}
 									onChange={handleChange}
+									disabled={loading}
 								/>
 							</div>
 
@@ -152,6 +124,7 @@ export const CreateEditPetForm = ({ initialValues }) => {
 											name="month"
 											value={data.month}
 											onChange={handleChange}
+											disabled={loading}
 										/>
 									</div>
 
@@ -162,14 +135,25 @@ export const CreateEditPetForm = ({ initialValues }) => {
 											name="year"
 											value={data.year}
 											onChange={handleChange}
+											disabled={loading}
 										/>
 									</div>
 								</div>
 							</div>
 						</div>
 
-						<div className="mt-8 col-span-4 flex justify-end">
-							<ButtonPrimary type="submit">
+						<div className="mt-8 col-span-4 flex justify-end items-center gap-x-10">
+							{user && (
+								<Link
+									href={route('user.pets', {
+										user: user.username,
+									})}
+								>
+									{t('ui.cancel')}
+								</Link>
+							)}
+
+							<ButtonPrimary type="submit" disabled={loading}>
 								<span className="px-4 py-1">
 									{initialValues?.id ? t('ui.save') : t('ui.create')}
 								</span>
