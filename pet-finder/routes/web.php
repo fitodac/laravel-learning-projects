@@ -31,7 +31,6 @@ Route::get('/', function () {
 	}
 });
 
-
 Route::resource('/pets', PetController::class)->names([
 	'index' => 'pets.list',
 	'create' => 'pets.create',
@@ -40,11 +39,7 @@ Route::resource('/pets', PetController::class)->names([
 	'destroy' => 'pets.destroy'
 ]);
 
-
-
-// Route::get('/dashboard', function () {
-// 	return Inertia::render('Dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/pet/{pet:token}', [PetController::class, 'show'])->name('pet.contact');
 
 Route::middleware('auth')->group(function () {
 	Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -52,11 +47,12 @@ Route::middleware('auth')->group(function () {
 	Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
 	Route::resource('/{user:username}/pets', UserPetsController::class)
+		->except('show')
 		->names([
 			'index' => 'user.pets',
 			'create' => 'user.pets.create',
 			'store' => 'user.pets.store',
-			'show' => 'user.pets.show',
+			// 'show' => 'user.pets.show',
 			'edit' => 'user.pets.edit',
 			'update' => 'user.pets.update',
 			'destroy' => 'user.pets.destroy',

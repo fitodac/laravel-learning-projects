@@ -26,6 +26,8 @@ return new class extends Migration
 			$table->unsignedBigInteger('breed_id');
 			$table->foreign('breed_id')->references('id')->on('breeds')->onUpdate('cascade')->onDelete('cascade');
 
+			$table->string('token');
+
 			$table->date('born_date');
 			$table->timestamps();
 		});

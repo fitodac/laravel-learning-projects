@@ -24,6 +24,7 @@
 		"laravel-react-i18n": "^2.0.4",
 		"react-filepond": "^7.1.2",
 		"react-image": "^4.1.0",
+		"react-qr-code": "^2.0.12",
 		"remixicon": "^3.5.0"
 	}
 }

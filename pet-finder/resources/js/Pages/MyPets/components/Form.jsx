@@ -3,25 +3,18 @@ import { ButtonPrimary, InputError } from '@/components'
 import { Link } from '@inertiajs/react'
 import { Context } from '@/context'
 import { useLaravelReactI18n } from 'laravel-react-i18n'
-import { DeletePet, FormImage } from '.'
+import { DeletePet, FormImage, QR } from '.'
 
 import 'filepond/dist/filepond.min.css'
-import { MyPetProvider, myPetContext } from '../context'
+import { myPetContext } from '../context'
 
 export const CreateEditPetForm = ({ initialValues }) => {
 	const { user } = useContext(Context)
-	const {
-		data,
-		setData,
-		loading,
-		errors,
-		handleChange,
-		handleSubmit,
-	} = useContext(myPetContext)
+	const { data, setData, loading, errors, handleChange, handleSubmit } =
+		useContext(myPetContext)
 	const { t } = useLaravelReactI18n()
 
 	useEffect(() => {
-		// console.log(setData)
 		if (initialValues) setData(initialValues)
 	}, [])
 
@@ -37,6 +30,12 @@ export const CreateEditPetForm = ({ initialValues }) => {
 					<section className="grid grid-cols-4 gap-10">
 						<div className="">
 							<FormImage />
+
+							{data.url && (
+								<div className="bg-white p-2 mt-10 rounded-md">
+									<QR />
+								</div>
+							)}
 						</div>
 
 						<div className="grid grid-cols-2 gap-5 col-span-3">

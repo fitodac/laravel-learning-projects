@@ -14,6 +14,7 @@ return new class extends Migration
 		Schema::create('provinces', function (Blueprint $table) {
 			$table->bigIncrements('id');
 			$table->string('name');
+			$table->string('country', 2);
 		});
 	}
 

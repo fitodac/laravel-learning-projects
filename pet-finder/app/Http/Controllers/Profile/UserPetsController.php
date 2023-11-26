@@ -10,6 +10,7 @@ use App\Models\Pet;
 use App\Traits\createStorageDirectoryIfDoesNotExists;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 
 class UserPetsController extends Controller
 {
@@ -46,8 +47,12 @@ class UserPetsController extends Controller
 			'breed_id' => 'required'
 		]);
 
-		$pet = Pet::create(array_merge($request->all(), ['user_id' => auth()->user()->id]));
+		$fields = array_merge($request->all(), [
+			'user_id' => auth()->user()->id,
+			'token' => Str::random(16)
+		]);
 
+		$pet = Pet::create($fields);
 
 		if ($request->hasFile('picture')) {
 			$store_directory = 'public/pets';
@@ -67,7 +72,10 @@ class UserPetsController extends Controller
 			}
 		}
 
-		return redirect()->route('user.pets', ['user' => $user->username]);
+		return redirect()->route('user.pets.edit', [
+			'user' => $user->username,
+			'pet' => $pet->id
+		]);
 	}
 
 	/**
@@ -83,8 +91,11 @@ class UserPetsController extends Controller
 	 */
 	public function edit(User $user, string $id)
 	{
+		$pet = $user->pets->find($id);
+		$pet->url = $pet->petContactPage;
+
 		return Inertia::render('MyPets/Edit', [
-			'pet' => $user->pets->find($id)
+			'pet' => $pet
 		]);
 	}
 

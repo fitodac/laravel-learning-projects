@@ -4,11 +4,6 @@ import { Img } from 'react-image'
 import { myPetContext } from '../context'
 import { useForm, usePage } from '@inertiajs/react'
 
-const fileToUrl = (file) => {
-	const reader = new FileReader()
-	return reader.readAsDataURL(file)
-}
-
 export const FormImage = () => {
 	const { data, setData, setLoading } = useContext(myPetContext)
 
@@ -22,7 +17,7 @@ export const FormImage = () => {
 
 	const {
 		props: {
-			ziggy: { url, location },
+			ziggy: { url },
 		},
 	} = usePage()
 
@@ -34,9 +29,9 @@ export const FormImage = () => {
 		}
 	}, [data])
 
-	useEffect(() => {
-		setLoading(processing)
-	}, [processing])
+	// useEffect(() => {
+	// 	setLoading(processing)
+	// }, [processing])
 
 	/**
 	 * Si el item existe se actualiza la imagen independientemente del resto del formulario
@@ -44,10 +39,6 @@ export const FormImage = () => {
 	const updateImage = () => {
 		post(route('images.upload'))
 		setData('picture', `${data.id}.webp`)
-		// setImgSrc(null)
-		// setTimeout(() => {
-		// 	setImgSrc(`${url}/storage/pets/${data.picture}`)
-		// }, 10)
 	}
 
 	return (
@@ -61,6 +52,24 @@ export const FormImage = () => {
 
 				<FilePond
 					allowMultiple={false}
+					
+					onaddfilestart={() => {
+						console.log('addfilestart')
+						setLoading(true)
+					}}
+
+					onprocessfile={(error, file) => {
+						if (error) console.log('error', error)
+
+						if (data.id) {
+							updateImage()
+						}
+
+						console.log('onprocessfile')
+						setImgSrc(URL.createObjectURL(file.file))
+						setLoading(false)
+					}}
+
 					server={{
 						process: (fieldName, file, metadata, load) => {
 							if (data.id) {
@@ -74,21 +83,6 @@ export const FormImage = () => {
 
 							load(Date.now())
 						},
-					}}
-					onaddfilestart={() => {
-						console.log('addfilestart')
-						setLoading(true)
-					}}
-					onprocessfile={(error, file) => {
-						if (error) console.log('error', error)
-
-						if (data.id) {
-							updateImage()
-						}
-
-						console.log('onprocessfile')
-						setImgSrc(URL.createObjectURL(file.file))
-						setLoading(false)
 					}}
 				/>
 			</div>

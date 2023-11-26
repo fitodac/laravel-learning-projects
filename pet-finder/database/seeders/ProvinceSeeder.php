@@ -42,21 +42,21 @@ class ProvinceSeeder extends Seeder
 			'tucuman',
 		];
 
-		foreach( $seeders as $seeder ){
+		foreach ($seeders as $seeder) {
 			$path = storage_path("seeders/locations/$seeder.json");
 			$data = json_decode(file_get_contents($path), true);
 
 
 			Province::create([
 				'id' => $data['id'],
-				'name' => $data['nombre']
+				'name' => $data['nombre'],
+				'country' => 'ar'
 			]);
 
-			foreach( $data['ciudades'] as $city ){
+			foreach ($data['ciudades'] as $city) {
 				City::create([
-					// 'id' => $city['id'],
 					'name' => $city['nombre'],
-					'province_id' => $data['id']
+					'province_id' => $data['id'],
 				]);
 			}
 		}
