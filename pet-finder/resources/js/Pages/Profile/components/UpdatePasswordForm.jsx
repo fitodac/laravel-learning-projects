@@ -6,7 +6,7 @@ import TextInput from '@/components/TextInput'
 import { useForm } from '@inertiajs/react'
 import { Transition } from '@headlessui/react'
 
-export default function UpdatePasswordForm({ className = '' }) {
+export const UpdatePasswordForm = ({ className = '' }) => {
 	const passwordInput = useRef()
 	const currentPasswordInput = useRef()
 

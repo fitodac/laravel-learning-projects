@@ -6,11 +6,11 @@ import { Link, useForm, usePage } from '@inertiajs/react'
 import { Transition } from '@headlessui/react'
 import { useLaravelReactI18n } from 'laravel-react-i18n'
 
-export default function UpdateProfileInformation({
+export const UpdateProfileInformationForm = ({
 	mustVerifyEmail,
 	status,
 	className = '',
-}) {
+}) => {
 	const user = usePage().props.auth.user
 
 	const { data, setData, patch, errors, processing, recentlySuccessful } =

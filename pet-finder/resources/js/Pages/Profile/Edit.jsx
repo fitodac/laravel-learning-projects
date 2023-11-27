@@ -1,8 +1,12 @@
 import AuthenticatedLayout from '@/layouts/AuthenticatedLayout'
-import DeleteUserForm from './Partials/DeleteUserForm'
-import UpdatePasswordForm from './Partials/UpdatePasswordForm'
-import UpdateProfileInformationForm from './Partials/UpdateProfileInformationForm'
+import {
+	ContactInformationForm,
+	UpdatePasswordForm,
+	DeleteUserForm,
+	UpdateProfileInformationForm,
+} from './components'
 import { Head } from '@inertiajs/react'
+import { useLaravelReactI18n } from 'laravel-react-i18n'
 
 export default function Edit({ auth, mustVerifyEmail, status }) {
 	return (
@@ -24,6 +28,10 @@ export default function Edit({ auth, mustVerifyEmail, status }) {
 							status={status}
 							className="max-w-xl"
 						/>
+					</div>
+
+					<div className="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
+						<ContactInformationForm />
 					</div>
 
 					<div className="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">

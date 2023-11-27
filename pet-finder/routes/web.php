@@ -44,7 +44,9 @@ Route::get('/pet/{pet:token}', [PetController::class, 'show'])->name('pet.contac
 Route::middleware('auth')->group(function () {
 	Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
 	Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+	Route::patch('/profile/contact-information', [ProfileController::class, 'updateContactInformation'])->name('profile.update.contact_information');
 	Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
 
 	Route::resource('/{user:username}/pets', UserPetsController::class)
 		->except('show')
