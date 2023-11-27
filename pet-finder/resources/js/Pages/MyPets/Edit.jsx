@@ -1,5 +1,5 @@
 import AuthenticatedLayout from '@/layouts/AuthenticatedLayout'
-import { Link, Head } from '@inertiajs/react'
+import { Head } from '@inertiajs/react'
 import { CreateEditPetForm } from './components'
 import { useLaravelReactI18n } from 'laravel-react-i18n'
 import { MyPetProvider } from './context'

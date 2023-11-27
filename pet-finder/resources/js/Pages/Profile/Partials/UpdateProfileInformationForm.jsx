@@ -4,6 +4,7 @@ import PrimaryButton from '@/components/PrimaryButton'
 import TextInput from '@/components/TextInput'
 import { Link, useForm, usePage } from '@inertiajs/react'
 import { Transition } from '@headlessui/react'
+import { useLaravelReactI18n } from 'laravel-react-i18n'
 
 export default function UpdateProfileInformation({
 	mustVerifyEmail,
@@ -14,9 +15,11 @@ export default function UpdateProfileInformation({
 
 	const { data, setData, patch, errors, processing, recentlySuccessful } =
 		useForm({
-			name: user.name,
+			username: user.username,
 			email: user.email,
 		})
+
+	const { t } = useLaravelReactI18n()
 
 	const submit = (e) => {
 		e.preventDefault()
@@ -43,8 +46,8 @@ export default function UpdateProfileInformation({
 					<TextInput
 						id="name"
 						className="mt-1 block w-full"
-						value={data.name}
-						onChange={(e) => setData('name', e.target.value)}
+						value={data.username}
+						onChange={(e) => setData('username', e.target.value)}
 						required
 						isFocused
 						autoComplete="name"
