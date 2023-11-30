@@ -17,7 +17,7 @@ class ComplaintFactory extends Factory
 	public function definition(): array
 	{
 		return [
-			'pet_id' => fake()->numberBetween(1, 300),
+			'pet_id' => fake()->numberBetween(1, 100),
 			'date' => fake()->date('Y-m-d'),
 			'comment' => fake()->paragraphs(5, true),
 		];

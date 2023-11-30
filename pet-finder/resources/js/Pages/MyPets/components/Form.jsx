@@ -151,7 +151,7 @@ export const CreateEditPetForm = ({ initialValues }) => {
 							{user && (
 								<Link
 									href={route('user.pets', {
-										user: user.username,
+										user: user.name,
 									})}
 								>
 									{t('ui.cancel')} / {t('ui.back')}

@@ -28,7 +28,7 @@ export const DeletePet = ({ pet }) => {
 		e.preventDefault()
 
 		useFormDelete(
-			route('user.pets.destroy', { user: user.username, pet: pet.id })
+			route('user.pets.destroy', { user: user.name, pet: pet.id })
 		)
 	}
 

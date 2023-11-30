@@ -22,14 +22,14 @@ use Inertia\Inertia;
 
 Route::get('/', function () {
 	if (auth()->user()) {
-		return redirect()->route('user.pets', ['user' => auth()->user()->username]);
+		return redirect()->route('user.pets', ['user' => auth()->user()->name]);
 	} else {
 		return Inertia::render('Home', [
 			'canLogin' => Route::has('login'),
 			'canRegister' => Route::has('register')
 		]);
 	}
-});
+})->name('home');
 
 Route::resource('/pets', PetController::class)->names([
 	'index' => 'pets.list',
@@ -48,7 +48,7 @@ Route::middleware('auth')->group(function () {
 	Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
 
-	Route::resource('/{user:username}/pets', UserPetsController::class)
+	Route::resource('/{user:name}/pets', UserPetsController::class)
 		->except('show')
 		->names([
 			'index' => 'user.pets',

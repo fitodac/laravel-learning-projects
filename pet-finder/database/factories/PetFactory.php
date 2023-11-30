@@ -23,7 +23,7 @@ class PetFactory extends Factory
 
 		return [
 			'name' => fake()->firstName(),
-			'user_id' => fake()->numberBetween(1, 200),
+			'user_id' => fake()->numberBetween(1, 30),
 			'picture' => '',
 			'species' => $species,
 			'gender' => fake()->randomElement(['macho', 'hembra']),

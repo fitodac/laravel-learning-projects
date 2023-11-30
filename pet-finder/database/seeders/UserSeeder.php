@@ -16,8 +16,8 @@ class UserSeeder extends Seeder
 	{
 
 		User::create([
-			'username' => 'fitodac',
-			'name' => 'Fito',
+			'name' => 'fitodac',
+			'firstname' => 'Fito',
 			'lastname' => 'Dac',
 			'email' => 'fitodac@gmail.com',
 			'email_verified_at' => date('Y-m-d H:i:s'),
@@ -30,6 +30,6 @@ class UserSeeder extends Seeder
 			'remember_token' => Str::random(10),
 		]);
 
-		User::factory(200)->create();
+		User::factory(30)->create();
 	}
 }

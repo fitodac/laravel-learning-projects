@@ -27,14 +27,14 @@ export const MyPetProvider = ({ children }) => {
 
 		if (data.id) {
 			patch(
-				route('user.pets.update', { user: user.username, pet: data.id }),
+				route('user.pets.update', { user: user.name, pet: data.id }),
 				data,
 				{
 					headers: { 'Content-Type': 'application/json' },
 				}
 			)
 		} else {
-			post(route('user.pets.store', { user: user.username }))
+			post(route('user.pets.store', { user: user.name }))
 		}
 	}
 

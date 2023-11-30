@@ -15,7 +15,7 @@ export const UpdateProfileInformationForm = ({
 
 	const { data, setData, patch, errors, processing, recentlySuccessful } =
 		useForm({
-			username: user.username,
+			name: user.name,
 			email: user.email,
 		})
 
@@ -46,8 +46,8 @@ export const UpdateProfileInformationForm = ({
 					<TextInput
 						id="name"
 						className="mt-1 block w-full"
-						value={data.username}
-						onChange={(e) => setData('username', e.target.value)}
+						value={data.name}
+						onChange={(e) => setData('name', e.target.value)}
 						required
 						isFocused
 						autoComplete="name"
@@ -66,7 +66,7 @@ export const UpdateProfileInformationForm = ({
 						value={data.email}
 						onChange={(e) => setData('email', e.target.value)}
 						required
-						autoComplete="username"
+						autoComplete="email"
 					/>
 
 					<InputError className="mt-2" message={errors.email} />

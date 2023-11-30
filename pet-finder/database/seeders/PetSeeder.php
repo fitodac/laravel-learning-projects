@@ -13,6 +13,6 @@ class PetSeeder extends Seeder
 	 */
 	public function run(): void
 	{
-		Pet::factory(300)->create();
+		Pet::factory(100)->create();
 	}
 }

@@ -12,7 +12,7 @@ export const Menu = () => {
 			{user && (
 				<>
 					<NavLink
-						href={route('user.pets', { user: user.username })}
+						href={route('user.pets', { user: user.name })}
 						active={route().current('user.pets')}
 					>
 						{t('navbar.menu.my_pets')}

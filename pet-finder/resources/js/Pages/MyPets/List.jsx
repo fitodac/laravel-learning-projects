@@ -47,7 +47,7 @@ export default function PetsListPage({ auth, ziggy, pets }) {
 									<div className="">
 										<Link
 											href={route('user.pets.edit', {
-												user: user.username,
+												user: user.name,
 												pet: id,
 											})}
 											className="bg-slate-900 px-6 py-1.5 rounded-md"
@@ -63,7 +63,7 @@ export default function PetsListPage({ auth, ziggy, pets }) {
 
 				<div className="mt-4 flex justify-end">
 					<Link
-						href={route('user.pets.create', { user: user?.username })}
+						href={route('user.pets.create', { user: user?.name })}
 						className="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
 					>
 						{t('profile.new_pet')}
