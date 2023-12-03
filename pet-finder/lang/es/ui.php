@@ -8,5 +8,6 @@ return [
 	'delete' => "Eliminar",
 	'action can not be undone' => "Esta acción no podrá deshacerse",
 	'cancel' => "Cancelar",
-	'back' => "Volver"
+	'back' => "Volver",
+	'home' => "Inicio"
 ];

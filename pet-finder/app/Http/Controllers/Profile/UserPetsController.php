@@ -73,7 +73,7 @@ class UserPetsController extends Controller
 		}
 
 		return redirect()->route('user.pets.edit', [
-			'user' => $user->username,
+			'user' => $user->name,
 			'pet' => $pet->id
 		]);
 	}
@@ -116,7 +116,7 @@ class UserPetsController extends Controller
 		$pet->update($request->all());
 
 		return redirect()->route('user.pets.edit', [
-			'user' => $user->username,
+			'user' => $user->name,
 			'pet' => $id
 		]);
 	}
@@ -146,7 +146,7 @@ class UserPetsController extends Controller
 		$pet->delete();
 
 		return redirect()->route('user.pets', [
-			'user' => $user->username
+			'user' => $user->name
 		]);
 	}
 }

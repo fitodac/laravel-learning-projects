@@ -25,13 +25,9 @@ export const FormImage = () => {
 
 	useEffect(() => {
 		if (data.id) {
-			setImgSrc(`${url}/storage/pets/${data.picture}`)
+			setImgSrc(`${url}/storage/pets/${data.picture}?${Date.now()}`)
 		}
 	}, [data])
-
-	// useEffect(() => {
-	// 	setLoading(processing)
-	// }, [processing])
 
 	/**
 	 * Si el item existe se actualiza la imagen independientemente del resto del formulario
@@ -52,12 +48,9 @@ export const FormImage = () => {
 
 				<FilePond
 					allowMultiple={false}
-					
 					onaddfilestart={() => {
-						console.log('addfilestart')
 						setLoading(true)
 					}}
-
 					onprocessfile={(error, file) => {
 						if (error) console.log('error', error)
 
@@ -65,11 +58,9 @@ export const FormImage = () => {
 							updateImage()
 						}
 
-						console.log('onprocessfile')
 						setImgSrc(URL.createObjectURL(file.file))
 						setLoading(false)
 					}}
-
 					server={{
 						process: (fieldName, file, metadata, load) => {
 							if (data.id) {

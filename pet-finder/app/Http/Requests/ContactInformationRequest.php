@@ -14,11 +14,11 @@ class ContactInformationRequest extends FormRequest
 	public function rules(): array
 	{
 		return [
-			'whatsapp' => ['string', 'max:255'],
-			'instagram_user' => ['string', 'max:255'],
-			'facebook_user' => ['string', 'max:255'],
-			'province_id' => ['numeric'],
-			'city_id' => ['numeric'],
+			'whatsapp' => ['string', 'max:255', 'nullable'],
+			'instagram_user' => ['string', 'max:255', 'nullable'],
+			'facebook_user' => ['string', 'max:255', 'nullable'],
+			'province_id' => ['numeric', 'nullable'],
+			'city_id' => ['numeric', 'nullable'],
 		];
 	}
 }

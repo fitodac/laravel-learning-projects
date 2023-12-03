@@ -2,7 +2,7 @@ import InputError from '@/components/InputError'
 import InputLabel from '@/components/InputLabel'
 import PrimaryButton from '@/components/PrimaryButton'
 import TextInput from '@/components/TextInput'
-import { Link, useForm, usePage } from '@inertiajs/react'
+import { useForm, usePage } from '@inertiajs/react'
 import { Transition } from '@headlessui/react'
 import { useLaravelReactI18n } from 'laravel-react-i18n'
 
@@ -47,10 +47,8 @@ export const ContactInformationForm = () => {
 					<TextInput
 						id="whatsapp"
 						className="mt-1 block w-full"
-						value={data.whatsapp}
+						value={data.whatsapp ?? ''}
 						onChange={(e) => setData('whatsapp', e.target.value)}
-						required
-						isFocused
 					/>
 
 					<InputError className="mt-2" message={errors.whatsapp} />
@@ -62,10 +60,8 @@ export const ContactInformationForm = () => {
 					<TextInput
 						id="instagram_user"
 						className="mt-1 block w-full"
-						value={data.instagram_user}
+						value={data.instagram_user ?? ''}
 						onChange={(e) => setData('instagram_user', e.target.value)}
-						required
-						isFocused
 					/>
 
 					<InputError className="mt-2" message={errors.instagram_user} />
@@ -77,10 +73,8 @@ export const ContactInformationForm = () => {
 					<TextInput
 						id="facebook_user"
 						className="mt-1 block w-full"
-						value={data.facebook_user}
+						value={data.facebook_user ?? ''}
 						onChange={(e) => setData('facebook_user', e.target.value)}
-						required
-						isFocused
 					/>
 
 					<InputError className="mt-2" message={errors.facebook_user} />
@@ -92,10 +86,8 @@ export const ContactInformationForm = () => {
 					<TextInput
 						id="province_id"
 						className="mt-1 block w-full"
-						value={data.province_id}
+						value={data.province_id ?? ''}
 						onChange={(e) => setData('province_id', e.target.value)}
-						required
-						isFocused
 					/>
 
 					<InputError className="mt-2" message={errors.province_id} />
@@ -107,10 +99,8 @@ export const ContactInformationForm = () => {
 					<TextInput
 						id="city_id"
 						className="mt-1 block w-full"
-						value={data.city_id}
+						value={data.city_id ?? ''}
 						onChange={(e) => setData('city_id', e.target.value)}
-						required
-						isFocused
 					/>
 
 					<InputError className="mt-2" message={errors.city_id} />

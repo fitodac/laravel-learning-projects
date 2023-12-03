@@ -37,11 +37,11 @@ export default function Login({ status, canResetPassword }) {
 
 			<form onSubmit={submit}>
 				<div>
-					<InputLabel htmlFor="email" value="Email" />
+					<InputLabel htmlFor="email" value="Username or Email" />
 
 					<TextInput
 						id="email"
-						type="email"
+						type="text"
 						name="email"
 						value={data.email}
 						className="mt-1 block w-full"
@@ -98,6 +98,14 @@ export default function Login({ status, canResetPassword }) {
 				</div>
 			</form>
 
+			<div className="my-4">
+				<Link
+					href={route('register')}
+					className="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
+				>
+					Aún no tengo una cuenta
+				</Link>
+			</div>
 			<div className="mt-4">
 				<SecondaryButton
 					onClick={() => {

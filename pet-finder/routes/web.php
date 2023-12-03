@@ -4,7 +4,7 @@
 use App\Http\Controllers\PetController;
 use App\Http\Controllers\ImagesController;
 use App\Http\Controllers\Profile\UserPetsController;
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Profile\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -24,7 +24,7 @@ Route::get('/', function () {
 	if (auth()->user()) {
 		return redirect()->route('user.pets', ['user' => auth()->user()->name]);
 	} else {
-		return Inertia::render('Home', [
+		return Inertia::render('Home/index', [
 			'canLogin' => Route::has('login'),
 			'canRegister' => Route::has('register')
 		]);
@@ -41,7 +41,7 @@ Route::resource('/pets', PetController::class)->names([
 
 Route::get('/pet/{pet:token}', [PetController::class, 'show'])->name('pet.contact');
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
 	Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
 	Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
 	Route::patch('/profile/contact-information', [ProfileController::class, 'updateContactInformation'])->name('profile.update.contact_information');
