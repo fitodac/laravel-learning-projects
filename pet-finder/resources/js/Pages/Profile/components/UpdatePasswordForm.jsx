@@ -5,6 +5,7 @@ import PrimaryButton from '@/components/PrimaryButton'
 import TextInput from '@/components/TextInput'
 import { useForm } from '@inertiajs/react'
 import { Transition } from '@headlessui/react'
+import { useLaravelReactI18n } from 'laravel-react-i18n'
 
 export const UpdatePasswordForm = ({ className = '' }) => {
 	const passwordInput = useRef()

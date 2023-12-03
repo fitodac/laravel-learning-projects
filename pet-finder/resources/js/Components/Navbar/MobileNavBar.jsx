@@ -1,5 +1,5 @@
 import { Img } from 'react-image'
-import { Link, usePage } from '@inertiajs/react'
+import { Link } from '@inertiajs/react'
 import { useLaravelReactI18n } from 'laravel-react-i18n'
 
 const logo = {
@@ -13,12 +13,12 @@ const NavItem = ({ children, href = '/', icon, active }) => {
 		<>
 			<Link
 				href={href}
-				className={`w-1/5 px-4 py-2 flex flex-col items-center justify-center gap-y-1 ${
+				className={`w-1/5 px-4 pb-2 pt-3 flex flex-col items-center justify-center gap-y-1 select-none ${
 					active ? 'bg-yellow-500' : 'text-gray-700'
 				}`}
 			>
 				{icon && <i className={`${icon} ri-lg`} />}
-				<span className="text-xs">{children}</span>
+				<span className="text-xs leading-none">{children}</span>
 			</Link>
 		</>
 	)
@@ -42,12 +42,28 @@ export const MobileNavBar = () => {
 					Whitepaper
 				</NavItem>
 
-				<div className="bg-white w-12 h-12 -mt-8 grid place-content-center rounded-full">
+				<div className="bg-white w-12 h-12 -mt-8 grid place-content-center select-none rounded-full">
 					{route().current('home') ? (
-						<Img src={logo.src} alt={logo.alt} className={logo.className} />
+						<Img
+							src={logo.src}
+							alt={logo.alt}
+							width="100px"
+							height="100px"
+							className={logo.className}
+							title="logo"
+							loading="eager"
+						/>
 					) : (
 						<Link href="/">
-							<Img src={logo.src} alt={logo.alt} className={logo.className} />
+							<Img
+								src={logo.src}
+								alt={logo.alt}
+								width="100px"
+								height="100px"
+								className={logo.className}
+								title="logo"
+								loading="eager"
+							/>
 						</Link>
 					)}
 				</div>

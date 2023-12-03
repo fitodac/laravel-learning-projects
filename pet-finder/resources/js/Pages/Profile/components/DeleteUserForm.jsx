@@ -6,6 +6,7 @@ import Modal from '@/components/Modal'
 import SecondaryButton from '@/components/SecondaryButton'
 import TextInput from '@/components/TextInput'
 import { useForm } from '@inertiajs/react'
+import { useLaravelReactI18n } from 'laravel-react-i18n'
 
 export const DeleteUserForm = ({ className = '' }) => {
 	const [confirmingUserDeletion, setConfirmingUserDeletion] = useState(false)

@@ -1,6 +1,7 @@
 import GuestLayout from '@/layouts/GuestLayout'
 import PrimaryButton from '@/components/PrimaryButton'
 import { Head, Link, useForm } from '@inertiajs/react'
+import { useLaravelReactI18n } from 'laravel-react-i18n'
 
 export default function VerifyEmail({ status }) {
 	const { post, processing } = useForm({})

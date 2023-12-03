@@ -3,6 +3,7 @@ import { FilePond } from 'react-filepond'
 import { Img } from 'react-image'
 import { myPetContext } from '../context'
 import { useForm, usePage } from '@inertiajs/react'
+import { useLaravelReactI18n } from 'laravel-react-i18n'
 
 export const FormImage = () => {
 	const { data, setData, setLoading } = useContext(myPetContext)

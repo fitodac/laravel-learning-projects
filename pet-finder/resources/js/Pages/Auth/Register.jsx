@@ -5,6 +5,7 @@ import InputLabel from '@/components/InputLabel'
 import PrimaryButton from '@/components/PrimaryButton'
 import TextInput from '@/components/TextInput'
 import { Head, Link, useForm } from '@inertiajs/react'
+import { useLaravelReactI18n } from 'laravel-react-i18n'
 
 export default function Register() {
 	const { data, setData, post, processing, errors, reset } = useForm({

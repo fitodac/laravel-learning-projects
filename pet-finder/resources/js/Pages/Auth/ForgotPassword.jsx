@@ -3,8 +3,10 @@ import InputError from '@/components/InputError'
 import PrimaryButton from '@/components/PrimaryButton'
 import TextInput from '@/components/TextInput'
 import { Head, useForm } from '@inertiajs/react'
+import { useLaravelReactI18n } from 'laravel-react-i18n'
 
 export default function ForgotPassword({ status }) {
+	const { t } = useLaravelReactI18n()
 	const { data, setData, post, processing, errors } = useForm({
 		email: '',
 	})

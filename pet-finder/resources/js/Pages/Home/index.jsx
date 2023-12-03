@@ -1,4 +1,3 @@
-import { GuestNavbar } from '@/components'
 import GuestLayout from '@/layouts/GuestLayout'
 import { Link, Head } from '@inertiajs/react'
 import { Hero } from './components'
@@ -7,7 +6,6 @@ export default function HomePage({ auth }) {
 	return (
 		<GuestLayout>
 			{/* <Head title="Pet Finder" /> */}
-			<GuestNavbar />
 			<Hero />
 
 			<main className="px-6">
