@@ -21,5 +21,4 @@ return [
 	'logout' => "Salir",
 	'create account' => "Crear cuenta",
 	'register' => "Registrarme"
-
 ];
