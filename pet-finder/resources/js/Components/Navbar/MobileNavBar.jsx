@@ -73,7 +73,7 @@ export const MobileNavBar = () => {
 					icon="ri-user-line"
 					active={route().current('login')}
 				>
-					{t('auth.login')}
+					{t('ui.login')}
 				</NavItem>
 
 				<NavItem
@@ -81,7 +81,7 @@ export const MobileNavBar = () => {
 					icon="ri-lock-password-line"
 					active={route().current('register')}
 				>
-					{t('auth.register')}
+					{t('ui.register')}
 				</NavItem>
 			</div>
 		</div>

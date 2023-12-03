@@ -1,8 +1,7 @@
-const btnPrimaryClassName = `inline-flex items-center px-4 py-2 bg-gray-800 dark:bg-gray-200 
-border border-transparent rounded-md font-semibold text-xs text-white dark:text-gray-800 
-uppercase tracking-widest hover:bg-gray-700 dark:hover:bg-white focus:bg-gray-700 
-dark:focus:bg-white active:bg-gray-900 dark:active:bg-gray-300 focus:outline-none 
-dark:focus:ring-offset-gray-800 transition ease-in-out duration-150`
+const btnPrimaryClassName = `bg-gradient-to-b from-yellow-200 to-[200%] to-yellow-700 
+text-yellow-900 text-sm font-medium tracking-wide px-6 py-2 
+inline-flex items-center justify-center border select-none transition-colors rounded-xl 
+hover:from-yellow-300 hover:to-yellow-800 focus:from-yellow-500 focus:to-yellow-500`
 
 export const ButtonPrimary = ({
 	className = '',

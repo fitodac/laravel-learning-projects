@@ -1,2 +1,5 @@
 export * from './Buttons'
+export * from './Checkbox'
 export * from './InputError'
+export * from './InputLabel'
+export * from './InputText'
