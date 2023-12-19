@@ -17,7 +17,7 @@ return [
 	'remember me' => "Recordarme",
 	'forgot password' => "Olvidé mi contraseña",
 	'not already registered' => "Aún no tengo una cuenta",
-	'already registered' => "Ya estoy registrado",
+	'already registered?' => "¿Ya tienes una cuenta?",
 	'username / email' => "Usuario / email",
 	'password' => "Contraseña",
 	'confirm password' => "Confirmar contraseña",

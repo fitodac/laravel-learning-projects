@@ -14,7 +14,7 @@ const NavItem = ({ children, href = '/', icon, active }) => {
 			<Link
 				href={href}
 				className={`w-1/5 px-4 pb-2 pt-3 flex flex-col items-center justify-center gap-y-1 select-none ${
-					active ? 'bg-yellow-500' : 'text-gray-700'
+					active ? 'bg-yellow-500' : 'text-stone-700'
 				}`}
 			>
 				{icon && <i className={`${icon} ri-lg`} />}

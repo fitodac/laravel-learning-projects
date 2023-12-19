@@ -20,6 +20,7 @@
 		"vite": "^4.0.0"
 	},
 	"dependencies": {
+		"@radix-ui/themes": "^2.0.2",
 		"filepond": "^4.30.4",
 		"laravel-react-i18n": "^2.0.4",
 		"react-filepond": "^7.1.2",

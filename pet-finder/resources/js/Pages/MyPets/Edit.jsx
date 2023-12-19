@@ -3,7 +3,6 @@ import { Head } from '@inertiajs/react'
 import { CreateEditPetForm } from './components'
 import { useLaravelReactI18n } from 'laravel-react-i18n'
 import { MyPetProvider } from './context'
-import { useLaravelReactI18n } from 'laravel-react-i18n'
 
 export default function PetCreateEditPage({ auth, pet }) {
 	const { user } = auth

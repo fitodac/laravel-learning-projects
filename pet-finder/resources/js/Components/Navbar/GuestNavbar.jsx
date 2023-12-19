@@ -2,12 +2,7 @@ import { NavLink } from '.'
 import { Img } from 'react-image'
 import { Link } from '@inertiajs/react'
 import { useLaravelReactI18n } from 'laravel-react-i18n'
-
-const logo = {
-	src: '/img/brand.svg',
-	alt: import.meta.env.VITE_APP_NAME ?? '',
-	className: `w-10`,
-}
+import { Brand } from '@/components'
 
 const NavItem = ({ children, href = '/', active }) => {
 	return (
@@ -25,14 +20,14 @@ const NavItem = ({ children, href = '/', active }) => {
 export const GuestNavbar = () => {
 	const { t } = useLaravelReactI18n()
 	return (
-		<div className="top-0 inset-x-0 fixed">
-			<div className="px-6 py-2 flex justify-between">
+		<div className="bg-amber9 text-amber11 top-0 inset-x-0 fixed">
+			<div className="px-6 py-2 flex justify-between items-center">
 				<div className="">
 					{route().current('home') ? (
-						<Img src={logo.src} alt={logo.alt} className={logo.className} />
+						<Brand className="fill-white w-12 h-auto" />
 					) : (
 						<Link href="/">
-							<Img src={logo.src} alt={logo.alt} className={logo.className} />
+							<Brand className="fill-white w-12 h-auto" />
 						</Link>
 					)}
 				</div>
