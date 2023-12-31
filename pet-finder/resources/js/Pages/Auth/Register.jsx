@@ -131,7 +131,10 @@ export default function Register() {
 									</div>
 
 									<div className="flex items-center justify-end mt-7">
-										<ButtonPrimary disabled={processing} className="w-full">
+										<ButtonPrimary
+											disabled={processing}
+											className="w-full md:w-auto"
+										>
 											{t('ui.register')}
 										</ButtonPrimary>
 									</div>

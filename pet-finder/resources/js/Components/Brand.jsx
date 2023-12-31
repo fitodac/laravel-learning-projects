@@ -3,7 +3,7 @@ export const Brand = ({ className }) => {
 		<>
 			<svg
 				viewBox="0 0 357 362"
-				xmlns:xlink="http://www.w3.org/1999/xlink"
+				xmlnsXlink="http://www.w3.org/1999/xlink"
 				className={className}
 			>
 				<g transform="translate(0.257225, 0.939233)">

@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+button {
+	@apply focus:outline-none;
+}
+
 .rt-TextFieldInput[class*='bg-stone'] {
 	@apply bg-stone-200;
 }
@@ -9,4 +13,3 @@
 .filepond--credits {
 	display: none !important;
 }
-

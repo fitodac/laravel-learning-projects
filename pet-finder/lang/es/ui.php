@@ -22,5 +22,11 @@ return [
 	'password' => "Contraseña",
 	'confirm password' => "Confirmar contraseña",
 	'username' => "Nombre de usuario",
-	'email' => "Email"
+	'email' => "Email",
+	'forgot password intro' => [
+		"¿Olvidaste tu contraseña? No te preocupes.",
+		"Ingresa tu dirección de correo electrónico asociada a tu cuenta 
+		y te enviaremos un enlace para restablecer tu contraseña."
+	],
+	'recover password' => "Recuperar contraseña"
 ];
