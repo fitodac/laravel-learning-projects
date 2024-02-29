@@ -26,6 +26,7 @@
 	"dependencies": {
 		"@nextui-org/react": "^2.2.9",
 		"framer-motion": "^11.0.5",
+		"react-toastify": "^10.0.4",
 		"remixicon": "^4.1.0",
 		"zustand": "^4.5.1"
 	}
