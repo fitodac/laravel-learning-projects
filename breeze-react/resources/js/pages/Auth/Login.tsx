@@ -88,7 +88,7 @@ const Login = ({ status, canResetPassword }: Props) => {
 								size="sm"
 								value={data.remember ? '1' : '0'}
 								tabIndex={2}
-								onChange={(e) => setData('remember', e.target.checked)}
+								onValueChange={(e) => setData('remember', e)}
 							>
 								{t('Remember me')}
 							</Switch>

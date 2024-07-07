@@ -49,7 +49,7 @@ const ForgotPassword = ({ status }: Props) => {
 								ref={inputEmail}
 								isInvalid={errors.email ? true : false}
 								errorMessage={errors.email}
-								onChange={(e) => setData('email', e.target.value)}
+								onValueChange={(e) => setData('email', e)}
 							/>
 						</fieldset>
 

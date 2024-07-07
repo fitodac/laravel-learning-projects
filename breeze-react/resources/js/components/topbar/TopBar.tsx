@@ -6,20 +6,18 @@ import {
 	DropdownItem,
 	Button,
 } from '@nextui-org/react'
-import { useStoreMain } from '@/store'
-import { router } from '@inertiajs/react'
+import { usePage, router } from '@inertiajs/react'
 import { t } from '@/i18n'
 import { useColorMode } from '@/hooks'
 import { cn } from '@nextui-org/react'
-import { useWindowWidth, useNavbarToggler } from '@/hooks'
+import { useNavbarToggler } from '@/hooks'
+import { PageProps } from '@/types'
 
 import img_brand from '@/assets/img/brand.svg'
 import { useEffect } from 'react'
 
 export const TopBar = () => {
-	const {
-		auth: { user },
-	} = useStoreMain()
+	const user = usePage<PageProps>().props.auth.user
 
 	const { navbarOpen, toggleNavbar } = useNavbarToggler()
 	const { colorMode, changeColorMode } = useColorMode()

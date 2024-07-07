@@ -13,7 +13,7 @@ import {
 } from '@nextui-org/react'
 
 export const DeleteAccount = (): JSX.Element => {
-	const { isOpen, onOpen, onOpenChange } = useDisclosure()
+	const { isOpen, onOpen, onClose, onOpenChange } = useDisclosure()
 	const passwordInput = useRef<HTMLInputElement>(null)
 
 	const {
@@ -29,6 +29,13 @@ export const DeleteAccount = (): JSX.Element => {
 
 	const submit: FormEventHandler = (e) => {
 		e.preventDefault()
+
+		destroy(route('profile.destroy'), {
+			preserveScroll: true,
+			onSuccess: () => onClose(),
+			onError: () => passwordInput.current?.focus(),
+			onFinish: () => reset(),
+		})
 	}
 
 	return (
@@ -43,16 +50,17 @@ export const DeleteAccount = (): JSX.Element => {
 				<div className="md:flex justify-end">
 					<div className="w-1/3">
 						<Button color="danger" onPress={onOpen} fullWidth>
-							Delete Account
+							{t('Delete account')}
 						</Button>
 					</div>
 				</div>
 			</div>
 
 			<Modal
+				hideCloseButton
+				size="sm"
 				isOpen={isOpen}
 				onOpenChange={onOpenChange}
-				size="sm"
 				isDismissable={false}
 				isKeyboardDismissDisabled={true}
 			>
@@ -60,43 +68,50 @@ export const DeleteAccount = (): JSX.Element => {
 					{(onClose) => (
 						<>
 							<ModalHeader>
-								{t('delete-account-confirmation-title')}
+								<span className="leading-tight select-none">
+									{t('delete-account-confirmation-title')}
+								</span>
 							</ModalHeader>
-							<ModalBody>
-								<p>{t('delete-account-confirmation-message')}</p>
 
-								<div className="space-y-1">
-									<Input
-										ref={passwordInput}
-										id="password"
-										type="password"
-										name="password"
-										label={t('Password')}
-										value={data.password}
-										errorMessage={errors.password}
-										isInvalid={errors.password ? true : false}
-										onChange={(e) => setData('password', e.target.value)}
-									/>
-								</div>
-							</ModalBody>
+							<form onSubmit={submit}>
+								<ModalBody>
+									<p className="text-sm leading-tight select-none">
+										{t('delete-account-confirmation-message')}
+									</p>
 
-							<ModalFooter>
-								<Button
-									color="danger"
-									fullWidth
-									type="submit"
-									spinner={
-										<i className="ri-loader-line ri-lg animate-spin"></i>
-									}
-									isLoading={processing}
-								>
-									{t('Delete')}
-								</Button>
+									<div className="space-y-1">
+										<Input
+											ref={passwordInput}
+											id="password"
+											type="password"
+											name="password"
+											label={t('Password')}
+											value={data.password}
+											errorMessage={errors.password}
+											isInvalid={errors.password ? true : false}
+											onValueChange={(e) => setData('password', e)}
+										/>
+									</div>
 
-								<Button color="default" fullWidth onPress={onClose}>
-									{t('Cancel')}
-								</Button>
-							</ModalFooter>
+									<div className="flex gap-x-5 pb-5">
+										<Button
+											color="danger"
+											fullWidth
+											type="submit"
+											spinner={
+												<i className="ri-loader-line ri-lg animate-spin"></i>
+											}
+											isLoading={processing}
+										>
+											{t('Delete')}
+										</Button>
+
+										<Button color="default" fullWidth onPress={onClose}>
+											{t('Cancel')}
+										</Button>
+									</div>
+								</ModalBody>
+							</form>
 						</>
 					)}
 				</ModalContent>

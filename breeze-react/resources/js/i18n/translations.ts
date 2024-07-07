@@ -43,14 +43,15 @@ const translations: Translations = {
 		'Profile information': 'Profile information',
 		'profile-information-intro': `Update your account's profile information and email address.`,
 		Account: 'Account',
-		'Update password': 'Update password',
 		'Delete account': 'Delete account',
 		Save: 'Save',
 		'Your email address is unverified': 'Your email address is unverified.',
+		'email-verify-link': 'Click here to re-send the verification email.',
 		'verification-link-sent-notice': `A new verification link has been sent to your email address.`,
 		'Update Password': 'Update Password',
 		'Current Password': 'Current Password',
 		'New Password': 'New Password',
+		'password-updated-message': 'The password has been updated.',
 		'delete-account-confirmation-title':
 			'Are you sure you want to delete your account?',
 		'delete-account-confirmation-message': `Once your account is deleted, all of its 
@@ -95,15 +96,17 @@ const translations: Translations = {
 		'Profile information': 'Información de perfil',
 		'profile-information-intro': `Actualiza los datos de tu cuenta y Email.`,
 		Account: 'Mi cuenta',
-		'Update password': 'Actualizar contraseña',
 		'Delete account': 'Delete account',
 		Save: 'Guardar',
 		'Your email address is unverified': 'Necesitas confirmar tu email.',
+		'email-verify-link':
+			'Haz click aquí para enviar el correo de verificación.',
 		'verification-link-sent-notice': `Te hemos enviado un nuevo link de verificación a tu 
 			dirección de correo.`,
-		'Update Password': 'Editar contraseña',
+		'Update Password': 'Actualizar contraseña',
 		'Current Password': 'Contraseña actual',
 		'New Password': 'Nueva contraseña',
+		'password-updated-message': 'La contraseña ha sido actualizada.',
 		'delete-account-confirmation-title':
 			'¿Estás seguro de querer eliminar tu cuenta?',
 		'delete-account-confirmation-message': `Una vez que tu cuenta haya sido borrada 

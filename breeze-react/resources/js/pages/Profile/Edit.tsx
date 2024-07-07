@@ -1,29 +1,14 @@
-import { useEffect } from 'react'
 import { AuthenticatedLayout } from '@/layouts'
 import { t } from '@/i18n'
 import { PageHeader } from '@/components'
 import { PageProps } from '@/types'
-import { useStoreMain } from '@/store'
-import {
-	UpdateProfile,
-	// VerifyEmail,
-	UpdatePassword,
-	DeleteAccount,
-} from './components'
-
-interface Props {}
+import { UpdateProfile, UpdatePassword, DeleteAccount } from './components'
 
 const Edit = ({
 	auth,
 	mustVerifyEmail,
 	status,
 }: PageProps<{ mustVerifyEmail: boolean; status?: string }>) => {
-	const { setAuth, profileTab, setProfileTab } = useStoreMain()
-
-	useEffect(() => {
-		if (setAuth) setAuth(auth)
-	}, [])
-
 	return (
 		<>
 			<PageHeader title={t('My account')} />

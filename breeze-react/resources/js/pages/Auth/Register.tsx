@@ -40,7 +40,7 @@ const Register = () => {
 								value={data.name}
 								isInvalid={errors.name ? true : false}
 								errorMessage={errors.name}
-								onChange={(e) => setData('name', e.target.value)}
+								onValueChange={(e) => setData('name', e)}
 							/>
 						</fieldset>
 
@@ -48,12 +48,12 @@ const Register = () => {
 							<Input
 								id="email"
 								name="email"
-								type="text"
+								type="email"
 								label="Email"
 								value={data.email}
 								isInvalid={errors.email ? true : false}
 								errorMessage={errors.email}
-								onChange={(e) => setData('email', e.target.value)}
+								onValueChange={(e) => setData('email', e)}
 							/>
 						</fieldset>
 
@@ -66,7 +66,7 @@ const Register = () => {
 								value={data.password}
 								isInvalid={errors.password ? true : false}
 								errorMessage={errors.password}
-								onChange={(e) => setData('password', e.target.value)}
+								onValueChange={(e) => setData('password', e)}
 								endContent={
 									<button
 										type="button"
@@ -74,9 +74,9 @@ const Register = () => {
 										onClick={() => setPwdVisibility(!pwdVisibility)}
 									>
 										{pwdVisibility ? (
-											<i className="ri-eye-fill ri-lg text-primary"/>
+											<i className="ri-eye-fill ri-lg text-primary" />
 										) : (
-											<i className="ri-eye-off-fill ri-lg text-zinc-400 dark:text-zinc-600"/>
+											<i className="ri-eye-off-fill ri-lg text-zinc-400 dark:text-zinc-600" />
 										)}
 									</button>
 								}
@@ -92,8 +92,8 @@ const Register = () => {
 								value={data.password_confirmation}
 								errorMessage={errors.password_confirmation}
 								isInvalid={errors.password_confirmation ? true : false}
-								onChange={(e) =>
-									setData('password_confirmation', e.target.value)
+								onValueChange={(e) =>
+									setData('password_confirmation', e)
 								}
 								endContent={
 									<button

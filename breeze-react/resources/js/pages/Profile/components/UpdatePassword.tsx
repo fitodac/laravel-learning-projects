@@ -1,25 +1,38 @@
-import { useRef, FormEventHandler } from 'react'
+import { useRef, useState, FormEventHandler } from 'react'
 import { t } from '@/i18n'
 import { useForm } from '@inertiajs/react'
 import { Input, Button } from '@nextui-org/react'
 
-export const UpdatePassword = (): JSX.Element => {
+export const UpdatePassword = () => {
 	const passwordInput = useRef<HTMLInputElement>(null)
 	const currentPasswordInput = useRef<HTMLInputElement>(null)
+	const [success, setSuccess] = useState(false)
 
-	const { data, setData, errors, put, reset, processing, recentlySuccessful } =
-		useForm({
-			current_password: '',
-			password: '',
-			password_confirmation: '',
-		})
+	const {
+		data,
+		setData,
+		errors,
+		put,
+		reset,
+		processing,
+		recentlySuccessful,
+		isDirty,
+	} = useForm({
+		current_password: '',
+		password: '',
+		password_confirmation: '',
+	})
 
 	const submit: FormEventHandler = (e) => {
 		e.preventDefault()
 
 		put(route('password.update'), {
 			preserveScroll: true,
-			onSuccess: () => reset(),
+			onSuccess: () => {
+				reset()
+				setSuccess(true)
+				setTimeout(() => setSuccess(false), 4000)
+			},
 			onError: (errors) => {
 				if (errors.password) {
 					reset('password', 'password_confirmation')
@@ -42,6 +55,10 @@ export const UpdatePassword = (): JSX.Element => {
 				{t('update-password-description')}
 			</div>
 
+			{success && (
+				<p className="text-success">{t('password-updated-message')}</p>
+			)}
+
 			<div className="mt-3">
 				<form onSubmit={submit}>
 					<div className="space-y-4">
@@ -55,7 +72,7 @@ export const UpdatePassword = (): JSX.Element => {
 								value={data.current_password}
 								errorMessage={errors.current_password}
 								isInvalid={errors.current_password ? true : false}
-								onChange={(e) => setData('current_password', e.target.value)}
+								onValueChange={(e) => setData('current_password', e)}
 							/>
 						</fieldset>
 
@@ -69,7 +86,7 @@ export const UpdatePassword = (): JSX.Element => {
 								value={data.password}
 								errorMessage={errors.password}
 								isInvalid={errors.password ? true : false}
-								onChange={(e) => setData('password', e.target.value)}
+								onValueChange={(e) => setData('password', e)}
 							/>
 						</fieldset>
 
@@ -82,9 +99,7 @@ export const UpdatePassword = (): JSX.Element => {
 								value={data.password_confirmation}
 								errorMessage={errors.password_confirmation}
 								isInvalid={errors.password_confirmation ? true : false}
-								onChange={(e) =>
-									setData('password_confirmation', e.target.value)
-								}
+								onValueChange={(e) => setData('password_confirmation', e)}
 							/>
 						</fieldset>
 
@@ -94,6 +109,7 @@ export const UpdatePassword = (): JSX.Element => {
 									fullWidth
 									color="primary"
 									type="submit"
+									isDisabled={!isDirty}
 									spinner={
 										<i className="ri-loader-line ri-lg animate-spin"></i>
 									}

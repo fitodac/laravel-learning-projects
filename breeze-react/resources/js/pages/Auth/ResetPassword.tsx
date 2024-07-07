@@ -46,7 +46,7 @@ const ResetPassword = ({ token, email }: Props) => {
 								autoComplete="username"
 								errorMessage={errors.email}
 								isInvalid={errors.email ? true : false}
-								onChange={(e) => setData('email', e.target.value)}
+								onValueChange={(e) => setData('email', e)}
 							/>
 						</fieldset>
 
@@ -59,7 +59,7 @@ const ResetPassword = ({ token, email }: Props) => {
 								value={data.password}
 								errorMessage={errors.password}
 								isInvalid={errors.password ? true : false}
-								onChange={(e) => setData('password', e.target.value)}
+								onValueChange={(e) => setData('password', e)}
 								endContent={
 									<button
 										type="button"
@@ -84,8 +84,8 @@ const ResetPassword = ({ token, email }: Props) => {
 								value={data.password_confirmation}
 								errorMessage={errors.password_confirmation}
 								isInvalid={errors.password ? true : false}
-								onChange={(e) =>
-									setData('password_confirmation', e.target.value)
+								onValueChange={(e) =>
+									setData('password_confirmation', e)
 								}
 								endContent={
 									<button

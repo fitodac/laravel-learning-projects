@@ -1,23 +1,29 @@
 import { FormEventHandler } from 'react'
 import { t } from '@/i18n'
-import { useForm } from '@inertiajs/react'
+import { Link, useForm, usePage } from '@inertiajs/react'
 import { Input, Button } from '@nextui-org/react'
-import { useStoreMain } from '@/store'
+import type { PageProps } from '@/types'
 
-export const UpdateProfile = ({
-	mustVerifyEmail,
-	status,
-}: {
+interface Props {
 	mustVerifyEmail: boolean
 	status?: string
-}) => {
-	const { auth } = useStoreMain()
+}
 
-	const { data, setData, patch, errors, processing, recentlySuccessful } =
-		useForm({
-			name: auth?.user ? auth.user.name : '',
-			email: auth?.user ? auth.user.email : '',
-		})
+export const UpdateProfile = ({ mustVerifyEmail, status }: Props) => {
+	const user = usePage<PageProps>().props.auth.user
+
+	const {
+		data,
+		setData,
+		patch,
+		errors,
+		processing,
+		recentlySuccessful,
+		isDirty,
+	} = useForm({
+		name: user.name,
+		email: user.email,
+	})
 
 	const submit: FormEventHandler = (e) => {
 		e.preventDefault()
@@ -43,7 +49,7 @@ export const UpdateProfile = ({
 							value={data.name}
 							isInvalid={errors.name ? true : false}
 							errorMessage={errors.name}
-							onChange={(e) => setData('name', e.target.value)}
+							onValueChange={(e) => setData('name', e)}
 						/>
 					</fieldset>
 
@@ -56,7 +62,7 @@ export const UpdateProfile = ({
 							value={data.email}
 							isInvalid={errors.email ? true : false}
 							errorMessage={errors.email}
-							onChange={(e) => setData('email', e.target.value)}
+							onValueChange={(e) => setData('email', e)}
 						/>
 					</fieldset>
 
@@ -66,6 +72,7 @@ export const UpdateProfile = ({
 								fullWidth
 								color="primary"
 								type="submit"
+								isDisabled={!isDirty}
 								spinner={<i className="ri-loader-line ri-lg animate-spin"></i>}
 								isLoading={processing}
 							>
@@ -75,6 +82,28 @@ export const UpdateProfile = ({
 					</div>
 				</div>
 			</form>
+
+			{mustVerifyEmail && user.email_verified_at === null && (
+				<div>
+					{status !== 'verification-link-sent' ? (
+						<p className="text-danger text-sm mt-2">
+							{t('Your email address is unverified')}{' '}
+							<Link
+								href={route('verification.send')}
+								method="post"
+								as="button"
+								className="underline text-sm"
+							>
+								{t('email-verify-link')}
+							</Link>
+						</p>
+					) : (
+						<div className="mt-2 font-medium text-sm text-green-600">
+							{t('verification-link-sent-notice')}
+						</div>
+					)}
+				</div>
+			)}
 		</div>
 	)
 }

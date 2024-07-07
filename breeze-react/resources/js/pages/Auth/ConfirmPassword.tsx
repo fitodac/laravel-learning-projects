@@ -41,7 +41,7 @@ const ConfirmPassword = () => {
 								value={data.password}
 								errorMessage={errors.password}
 								isInvalid={errors.password ? true : false}
-								onChange={(e) => setData('password', e.target.value)}
+								onValueChange={(e) => setData('password', e)}
 								endContent={
 									<button
 										type="button"
