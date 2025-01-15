@@ -1,0 +1,1 @@
+import{j as e}from"./app-COamctlB.js";const r=({status:s})=>e.jsx(e.Fragment,{children:e.jsxs("div",{className:"bg-success-100 text-success font-medium leading-tight pl-12 pr-5 py-4 relative rounded-2xl",children:[e.jsx("i",{className:"ri-checkbox-circle-line ri-xl text-success-300 left-1 top-2 absolute pointer-events-none"}),s]})});export{r as StatusMessage};

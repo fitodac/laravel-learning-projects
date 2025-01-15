@@ -1,0 +1,123 @@
+{
+  "node_modules/laravel-vite-plugin/inertia-helpers/index.js": [
+    "/build/assets/remixicon-CTLsMfss.eot",
+    "/build/assets/remixicon-BCkO1-UF.woff2",
+    "/build/assets/remixicon-IHD7miHF.woff",
+    "/build/assets/remixicon-KtvQcpfP.ttf",
+    "/build/assets/remixicon-Dzy_cYSE.svg"
+  ],
+  "node_modules/react-toastify/dist/ReactToastify.css": [
+    "/build/assets/remixicon-CTLsMfss.eot",
+    "/build/assets/remixicon-BCkO1-UF.woff2",
+    "/build/assets/remixicon-IHD7miHF.woff",
+    "/build/assets/remixicon-KtvQcpfP.ttf",
+    "/build/assets/remixicon-Dzy_cYSE.svg"
+  ],
+  "node_modules/remixicon/fonts/remixicon.css": [
+    "/build/assets/remixicon-CTLsMfss.eot",
+    "/build/assets/remixicon-BCkO1-UF.woff2",
+    "/build/assets/remixicon-IHD7miHF.woff",
+    "/build/assets/remixicon-KtvQcpfP.ttf",
+    "/build/assets/remixicon-Dzy_cYSE.svg"
+  ],
+  "resources/css/app.css": [
+    "/build/assets/remixicon-CTLsMfss.eot",
+    "/build/assets/remixicon-BCkO1-UF.woff2",
+    "/build/assets/remixicon-IHD7miHF.woff",
+    "/build/assets/remixicon-KtvQcpfP.ttf",
+    "/build/assets/remixicon-Dzy_cYSE.svg"
+  ],
+  "resources/js/app.tsx": [
+    "/build/assets/remixicon-CTLsMfss.eot",
+    "/build/assets/remixicon-BCkO1-UF.woff2",
+    "/build/assets/remixicon-IHD7miHF.woff",
+    "/build/assets/remixicon-KtvQcpfP.ttf",
+    "/build/assets/remixicon-Dzy_cYSE.svg"
+  ],
+  "resources/js/assets/img/brand.svg": [
+    "/build/assets/brand-DWx19l1g.js",
+    "/build/assets/brand-PO9LWXKX.svg"
+  ],
+  "resources/js/bootstrap.ts": [
+    "/build/assets/remixicon-CTLsMfss.eot",
+    "/build/assets/remixicon-BCkO1-UF.woff2",
+    "/build/assets/remixicon-IHD7miHF.woff",
+    "/build/assets/remixicon-KtvQcpfP.ttf",
+    "/build/assets/remixicon-Dzy_cYSE.svg"
+  ],
+  "resources/js/components/PageHeader.tsx": [
+    "/build/assets/AuthenticatedLayout-A8O0eBPC.js"
+  ],
+  "resources/js/components/Toastify.tsx": [
+    "/build/assets/Toastify-BFVztSFx.js"
+  ],
+  "resources/js/components/navbar/Navbar.tsx": [
+    "/build/assets/AuthenticatedLayout-A8O0eBPC.js"
+  ],
+  "resources/js/components/topbar/TopBar.tsx": [
+    "/build/assets/AuthenticatedLayout-A8O0eBPC.js"
+  ],
+  "resources/js/hooks/useColorMode.ts": [
+    "/build/assets/Toastify-BFVztSFx.js"
+  ],
+  "resources/js/hooks/useNavbarToggler.ts": [
+    "/build/assets/AuthenticatedLayout-A8O0eBPC.js"
+  ],
+  "resources/js/hooks/useWindowWidth.ts": [
+    "/build/assets/AuthenticatedLayout-A8O0eBPC.js"
+  ],
+  "resources/js/i18n/translations.ts": [
+    "/build/assets/translations-Dx-0rddP.js"
+  ],
+  "resources/js/layouts/AuthenticatedLayout.tsx": [
+    "/build/assets/AuthenticatedLayout-A8O0eBPC.js"
+  ],
+  "resources/js/layouts/GuestLayout.tsx": [
+    "/build/assets/Welcome-la9DWvBz.js"
+  ],
+  "resources/js/pages/Auth/ConfirmPassword.tsx": [
+    "/build/assets/ConfirmPassword-DvxrsOzH.js"
+  ],
+  "resources/js/pages/Auth/ForgotPassword.tsx": [
+    "/build/assets/ForgotPassword--PPcdl36.js"
+  ],
+  "resources/js/pages/Auth/Login.tsx": [
+    "/build/assets/Login-CxRh2NiB.js"
+  ],
+  "resources/js/pages/Auth/Register.tsx": [
+    "/build/assets/Register-BfBHO6bl.js"
+  ],
+  "resources/js/pages/Auth/ResetPassword.tsx": [
+    "/build/assets/ResetPassword-THhUyPuA.js"
+  ],
+  "resources/js/pages/Auth/VerifyEmail.tsx": [
+    "/build/assets/VerifyEmail-BjeosCmP.js"
+  ],
+  "resources/js/pages/Auth/components/StatusMessage.tsx": [
+    "/build/assets/StatusMessage-DG9ui-FH.js"
+  ],
+  "resources/js/pages/Auth/layout/AuthLayout.tsx": [
+    "/build/assets/AuthLayout-CHcd3Jie.js"
+  ],
+  "resources/js/pages/Dashboard.tsx": [
+    "/build/assets/Dashboard-BEAGkgnt.js"
+  ],
+  "resources/js/pages/Profile/Edit.tsx": [
+    "/build/assets/Edit-CJISrwVG.js"
+  ],
+  "resources/js/pages/Profile/components/DeleteAccount.tsx": [
+    "/build/assets/DeleteAccount-BreAFSZI.js"
+  ],
+  "resources/js/pages/Profile/components/UpdatePassword.tsx": [
+    "/build/assets/UpdatePassword-B3xvzdPA.js"
+  ],
+  "resources/js/pages/Profile/components/UpdateProfile.tsx": [
+    "/build/assets/UpdateProfile-CoLu18bv.js"
+  ],
+  "resources/js/pages/Welcome.tsx": [
+    "/build/assets/Welcome-la9DWvBz.js"
+  ],
+  "resources/js/store/useStoreMain.ts": [
+    "/build/assets/Toastify-BFVztSFx.js"
+  ]
+}
