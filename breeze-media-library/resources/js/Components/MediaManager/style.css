@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* width */
+#mediaManagerGallery::-webkit-scrollbar,
+#mediaManagerSidebar::-webkit-scrollbar {
+	width: 10px;
+}
+
+/* Track */
+#mediaManagerGallery::-webkit-scrollbar-track,
+#mediaManagerSidebar::-webkit-scrollbar-track {
+	@apply bg-gray-200 dark:bg-black/20;
+}
+
+/* Handle */
+#mediaManagerGallery::-webkit-scrollbar-thumb,
+#mediaManagerSidebar::-webkit-scrollbar-thumb {
+	@apply bg-gray-400 rounded-full dark:bg-black/80;
+}

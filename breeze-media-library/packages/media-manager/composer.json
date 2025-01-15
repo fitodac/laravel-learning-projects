@@ -1,0 +1,37 @@
+{
+	"name": "fitodac/media-manager",
+	"description": "Media manager component for Laravel Breeze with React and Inertia",
+	"keywords": [
+		"laravel",
+		"media",
+		"images"
+	],
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "fitodac",
+			"email": "fitodac@gmail.com"
+		}
+	],
+	"require": {
+		"php": "^8.1.0",
+		"illuminate/console": "^10.17",
+		"illuminate/filesystem": "^10.17",
+		"illuminate/support": "^10.17",
+		"illuminate/validation": "^10.17"
+	},
+	"autoload": {
+		"psr-4": {
+			"Fitodac\\MediaManager\\": "src/"
+		}
+	},
+	"extra": {
+		"laravel": {
+			"providers": [
+				"Fitodac\\MediaManager\\MediaManagerServiceProvider"
+			]
+		}
+	},
+	"minimum-stability": "dev",
+	"prefer-stable": true
+}
