@@ -1,0 +1,11 @@
+2025-03-12 11:20:24,506 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2025-03-12 11:20:24,518 CRIT Server 'unix_http_server' running without any HTTP authentication checking
+2025-03-12 11:20:24,519 INFO supervisord started with pid 1
+2025-03-12 11:20:25,526 INFO spawned: 'apache2' with pid 8
+2025-03-12 11:20:25,527 INFO spawned: 'mysql' with pid 9
+2025-03-12 11:20:26,969 INFO success: apache2 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-03-12 11:20:26,970 INFO success: mysql entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-03-12 11:40:59,620 WARN received SIGTERM indicating exit request
+2025-03-12 11:40:59,623 INFO waiting for apache2, mysql to die
+2025-03-12 11:41:01,631 INFO stopped: mysql (exit status 0)
+2025-03-12 11:41:01,635 INFO stopped: apache2 (terminated by SIGTERM)
